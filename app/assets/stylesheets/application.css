@@ -8,3 +8,12 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+.container {
+  text-align: center;
+  width: 30%;
+}
+
+.player-list td {
+  text-align: center;
+}

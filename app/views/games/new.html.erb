@@ -1,0 +1,20 @@
+<h1> Welcome, Poet! </h1>
+<div data-controller="join">
+  <div data-join-target="create">
+    <%= form_with local: true, url: games_path do |form| %>
+      <div class="actions">
+        <%= form.submit "Create Game" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <input type="text" data-join-target="code" data-action="join#upcase" placeholder="Enter Game Code">
+  </div>
+
+  <div data-join-target="join">
+    <button data-action="join#join">Join Game</button>
+  </div>
+</div>
+
+<span><%= "#{@user_name}(#{@user_id})" %></span>

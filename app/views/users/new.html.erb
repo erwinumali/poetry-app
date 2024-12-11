@@ -1,0 +1,12 @@
+<h1>Poetry is Beauty</h1>
+
+<%= form_with local: true, url: users_path do |form| %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "u-full-width" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Login" %>
+  </div>
+<% end %>

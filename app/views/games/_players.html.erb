@@ -1,0 +1,13 @@
+<% if !players || players.empty? %>
+  <p>There are no players in this game yet.</p>
+<% else %>
+  <table class="player-list u-full-width">
+    <tbody>
+      <% players.each do |player| %>
+        <tr>
+          <td> <%= "#{player[:name]} (#{player[:id]})" %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
