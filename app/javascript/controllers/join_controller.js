@@ -1,10 +1,9 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = [ "create", "code", "join" ]
+  static targets = [ "create", "code" ]
 
   initialize() {
-    console.log("initialize")
     this.codeTarget.hidden = true
   }
 

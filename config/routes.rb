@@ -19,6 +19,10 @@ Rails.application.routes.draw do
       post :start
       post :stop
       delete :remove_player
+
+      post :ready
+      post :start
+      post :stop
     end
   end
 

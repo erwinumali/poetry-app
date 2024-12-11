@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   before_action :user_created?
-  before_action :get_game, only: [:show, :start, :stop, :remove_player]
+  before_action :get_game, except: [:new, :create]
 
   def new
   end
@@ -18,8 +18,7 @@ class GamesController < ApplicationController
     if @game.nil?
       redirect_to new_game_path
     else
-      @game.add_player(@user_id, @user_name)
-      @game
+      handle_game_state
     end
   end
 
@@ -35,6 +34,11 @@ class GamesController < ApplicationController
     end
   end
 
+  def ready
+    @game.prepare!
+    render :ready, layout: !params[:hide_layout]
+  end
+
   def start
     @game.playing!
     redirect_to @game
@@ -46,6 +50,28 @@ class GamesController < ApplicationController
   end
 
   private
+
+  def handle_game_state
+    if @game.players.any? { |player| player[:id] == @user_id }
+      case @game.state.to_sym
+      when :waiting
+        render :show
+      when :ready
+        render :ready
+      else
+        puts 'Invalid game!'
+        redirect_to new_game_path
+      end
+    else
+      case @game.state.to_sym
+      when :waiting
+        @game.add_player(@user_id, @user_name)
+      else
+        puts 'Game has already started!'
+        redirect_to new_game_path
+      end
+    end
+  end
 
   def get_game
     @game = Game.find_by_code(params[:code])

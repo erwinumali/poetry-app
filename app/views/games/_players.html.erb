@@ -5,7 +5,7 @@
     <table class="player-list u-full-width">
       <tbody>
         <% players.each do |player| %>
-          <tr>
+          <tr data-game-target="player">
             <td> <%= "#{player[:name]} (#{player[:id]})" %> </td>
             <td> <%= link_to 'Remove', remove_player_game_path(code: game.code, player_id: player[:id]), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %> </td>
           </tr>

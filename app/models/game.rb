@@ -1,7 +1,7 @@
 class Game < ApplicationRecord
   serialize :players
 
-  enum :state, waiting: 0, playing: 1, finished: 2
+  enum :state, waiting: 0, ready: 1, playing: 2, finished: 3
 
   # after_update_commit do
   #   broadcast_replace_to self, :players, partial: "games/players", locals: { game: self, players: self.players }
@@ -30,6 +30,21 @@ class Game < ApplicationRecord
     save
 
     realtime_replace
+  end
+
+  def prepare!
+    shuffled_players = self.players.shuffle.in_groups(2)
+    shuffled_players[0].each { |player| player[:team] = 1 }
+    shuffled_players[1].each { |player| player[:team] = 2 }
+
+    final_players = (self.players.count / 2).times.map do |i|
+      [shuffled_players[0][i], shuffled_players[1][i]]
+    end.flatten
+
+    self.players = final_players
+    save
+
+    self.ready!
   end
 
   private

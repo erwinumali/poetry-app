@@ -1,11 +1,11 @@
-<h1> Game Code: <%= @game.code %> </h1>
-<%= turbo_stream_from @game %>
+<div data-controller="game" id="<% dom_id @game %>" data-game-ready-url-value="<%= ready_game_path(code: @game.code) %>">
+  <h1> Game Code: <%= @game.code %> </h1>
+  <%= turbo_stream_from @game %>
 
-<div data-controller="game">
   <h2> Players </h2>
   <%= render partial: 'games/players', locals: { game: @game, players: @game.players } %>
 
   <% if @game.host == @user_id %>
-    <button data-action="game#start">Start Game</button>
+    <button data-action="game#ready">Ready!</button>
   <% end %>
 </div>

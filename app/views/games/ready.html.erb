@@ -1,0 +1,18 @@
+<h2> Game is starting! </h2>
+<p> Here are the teams: </p>
+<table class="player-list u-full-width">
+  <tbody>
+    <% @game.players do |player| %>
+      <tr data-game-target="player">
+        <td> <%= "#{player[:name]} (#{player[:id]})" %> </td>
+        <td> <%= "#{player[:team] == 1 ? 'Team A' : 'Team B'}" %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<p> Please sit in this order! We'll start with player: <strong><%= @game.players.first[:name] %></strong></p>
+
+<% if @game.host == @user_id %>
+  <p> If everyone is ready start the game with this button</p>
+  <button data-action="game#start">Start Game</button>
+<% end %>
