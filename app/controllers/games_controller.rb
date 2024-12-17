@@ -32,16 +32,18 @@ class GamesController < ApplicationController
   end
 
   def ready
-    @game.prepare!
-
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.replace("players_game_#{@game.id}") do
-          render partial: 'games/ready', locals: { game: @game, user_id: @user_id }
-        end
+    if @game.players.count < 2
+      respond_to do |format|
+        format.turbo_stream { head :ok }
+        format.html { redirect_to game_path(code: @game.code)}
       end
+    else
+      @game.prepare!
 
-      format.html { render :ready }
+      respond_to do |format|
+        format.turbo_stream { head :ok }
+        format.html { render :ready }
+      end
     end
   end
 

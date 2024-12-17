@@ -1,0 +1,17 @@
+<div
+  id="<%= dom_id(@game) %>"
+  data-controller="game"
+  data-game-code-value="<%= @game.code %>"
+  data-game-host-value="<%= @game.host == @user_id %>"
+  data-game-current-id-value="<%= @user_id %>"
+
+  data-game-ready-url-value="<%= ready_game_path(code: @game.code) %>"
+  data-game-start-url-value="<%= start_game_path(code: @game.code) %>"
+>
+  <h1> Game Code: <%= @game.code %> </h1>
+  <%= turbo_stream_from @game %>
+
+  <turbo-frame id="<%= dom_id(@game, :container) %>">
+    <%= yield(@game, @user_id) %>
+  </turbo-frame>
+</div>

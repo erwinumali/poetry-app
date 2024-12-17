@@ -1,49 +1,17 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = [ "player" ]
+  static targets = [ "player", "startButton" ]
 
   static values = {
     code: String,
     host: String,
+    currentId: String,
     readyUrl: String,
     startUrl: String
   }
 
   initialize() {
-  }
-
-  playerTargetConnected(target) {
-    console.log('player connected!')
-
-    if (target.children.length < 2 && this.hostValue == 'true') {
-      const deleteLink = document.createElement('a')
-      deleteLink.setAttribute('data-turbo-method', 'delete')
-      deleteLink.setAttribute('data-turbo-confirm', 'Are you sure?')
-      deleteLink.setAttribute('href', '/games/' + this.codeValue + '/remove_player?player_id=' + target.dataset.playerId)
-
-      const deleteText = document.createTextNode('Remove')
-      deleteLink.appendChild(deleteText)
-
-      const td = document.createElement('td')
-      td.appendChild(deleteLink)
-      target.appendChild(td)
-    }
-  }
-
-  ready() {
-    if (this.playerTargets.length % 2 != 0) {
-      alert("Need an even number of players!")
-      return
-    }
-    else {
-      fetch(this.readyUrlValue, {
-        method: 'POST',
-        headers: this._getFetchHeaders()
-      }).
-        then(response => response.text()).
-        then(html => Turbo.renderStreamMessage(html))
-    }
   }
 
   start() {
@@ -55,6 +23,28 @@ export default class extends Controller {
       then(html => this.element.innerHTML = html)
   }
 
+  // Callbacks
+  //
+  startButtonTargetConnected(target) {
+    console.log('button connected!')
+
+    if (this.hostValue == 'true') {
+      target.classList.remove('hidden')
+    }
+  }
+
+  playerTargetConnected(target) {
+    if (this.hostValue != 'true') {
+      target.querySelector('.remove-link').remove()
+    }
+
+    if (this.currentIdValue == target.dataset.playerId) {
+      target.classList.add('current-player')
+    }
+  }
+
+  // Private
+  //
   _getFetchHeaders() {
     return {
       Accept: "text/vnd.turbo-stream.html",

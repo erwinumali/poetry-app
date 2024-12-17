@@ -17,7 +17,7 @@ class Game < ApplicationRecord
     self.players << { id: id, name: name, score: 0 } unless self.players.any? { |player| player[:id] == id }
     save
 
-    realtime_replace
+    broadcast_updated_players
   end
 
   def remove_player(id)
@@ -25,7 +25,7 @@ class Game < ApplicationRecord
     self.players = new_players
     save
 
-    realtime_replace
+    broadcast_updated_players
   end
 
   def prepare!
@@ -41,6 +41,8 @@ class Game < ApplicationRecord
     save
 
     self.ready!
+
+    broadcast_update target: "container_game_#{self.id}", partial: 'games/ready', locals: { game: self }
   end
 
   def start_game!
@@ -54,8 +56,8 @@ class Game < ApplicationRecord
 
   private
 
-  def realtime_replace
-    broadcast_replace target: "players_game_#{self.id}", partial: 'games/players', locals: { game: self, players: self.players }
+  def broadcast_updated_players
+    broadcast_update target: "players_game_#{self.id}", partial: 'games/players', locals: { game: self, players: self.players }
   end
 
   def generate_code

@@ -17,3 +17,11 @@
 .player-list td {
   text-align: center;
 }
+
+.hidden {
+  display: none;
+}
+
+.current-player {
+  font-weight: bold;
+}

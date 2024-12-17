@@ -1,1 +1,3 @@
-<%= render partial: 'games/ready', locals: { game: @game, user_id: @user_id } %>
+<%= render layout: 'layouts/container' do |game, user_id| %>
+  <%= render partial: 'games/ready', locals: { game: game, user_id: user_id } %>
+<% end %>

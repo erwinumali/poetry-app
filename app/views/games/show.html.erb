@@ -1,17 +1,10 @@
-<div
-  data-controller="game" id="<% dom_id @game %>"
-  data-game-code-value="<%= @game.code %>"
-  data-game-host-value="<%= @game.host == @user_id %>"
-  data-game-ready-url-value="<%= ready_game_path(code: @game.code) %>"
-  data-game-start-url-value="<%= start_game_path(code: @game.code) %>"
->
-  <h1> Game Code: <%= @game.code %> </h1>
-  <%= turbo_stream_from @game %>
+<%= render layout: 'layouts/container' do |game, user_id| %>
 
-  <h2> Players </h2>
-  <%= render partial: 'games/players', locals: { game: @game, players: @game.players } %>
+  <turbo-frame id="<%= dom_id(@game, :players) %>">
+    <%= render partial: 'games/players', locals: { game: @game, players: @game.players } %>
+  </turbo-frame>
 
-  <% if @game.host == @user_id %>
-    <button data-action="game#ready">Ready!</button>
+  <%= form_with url: ready_game_path(code: @game.code), html: { class: ('hidden' unless game.host == user_id) } do |form| %>
+    <%= form.submit 'Ready!' %>
   <% end %>
-</div>
+<% end %>
