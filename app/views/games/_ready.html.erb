@@ -12,7 +12,7 @@
 <p> Please sit in a circle in this order! We'll start with player: <strong><%= game.players.first[:name] %></strong></p>
 
 <div data-game-target="startButton" class="<%= 'hidden' if !(defined?(user_id) && game.host == user_id) %>" >
-  <p> If everyone is ready start the game with this button:</p>
+  <p> If everyone is ready, start the game with this button:</p>
 
   <%= form_with url: start_game_path(code: game.code) do |form| %>
     <%= form.submit 'Start Game!' %>

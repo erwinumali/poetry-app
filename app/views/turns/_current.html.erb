@@ -3,19 +3,22 @@
 </div>
 
 <div data-turn-target="words" class="words">
+  <% easy_word = turn.words.easy.first %>
+  <% hard_word = turn.words.hard.first %>
+
   <div class="card">
     <div class="difficulty">EASY (+1)</div>
-    <div data-turn-target="easyWord" class="word">LOREM</div>
+    <div data-turn-target="easyWord" class="word" data-word-id="<%= easy_word.id %>"><%= easy_word.word.upcase %></div>
   </div>
 
   <div class="card">
     <div class="difficulty">HARD (+3)</div>
-    <div data-turn-target="hardWord" class="word">IPSUM</div>
+    <div data-turn-target="hardWord" class="word" data-word-id="<%= hard_word.id %>"><%= hard_word.word.upcase %></div>
   </div>
 </div>
 
 <div data-turn-target="actions" class="turn-actions">
   <%= form_with url: '' do |form| %>
-    <%= form.submit 'Skip (-1)' %>
+    <%= form.submit 'Pass (-1)' %>
   <% end %>
 </div>

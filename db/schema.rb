@@ -10,15 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_18_024853) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_19_041352) do
   create_table "games", force: :cascade do |t|
     t.integer "state"
     t.string "code"
     t.string "host"
     t.integer "rounds", default: 2
+    t.integer "time_per_turn", default: 120
     t.text "players"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "sub_turns", force: :cascade do |t|
+    t.integer "score", default: 0
+    t.string "easy_word"
+    t.string "hard_word"
+    t.integer "state"
+    t.integer "turn_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["turn_id"], name: "index_sub_turns_on_turn_id"
   end
 
   create_table "turns", force: :cascade do |t|

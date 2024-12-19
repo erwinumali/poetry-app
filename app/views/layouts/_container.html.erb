@@ -11,6 +11,6 @@
   <%= turbo_stream_from @game %>
 
   <turbo-frame id="<%= dom_id(@game, :container) %>">
-    <%= yield(@game, @user_id, @turn) %>
+    <%= yield(@game, @user_id) %>
   </turbo-frame>
 </div>

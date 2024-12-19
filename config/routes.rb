@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   #
   root "users#new"
 
-  resources :games, only: [:new, :create, :show], param: :code do
+  resources :games, only: [:index, :new, :create, :show], param: :code do
     member do
       post :start
       post :stop

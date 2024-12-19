@@ -50,13 +50,13 @@ class Game < ApplicationRecord
       judge_player = self.players.last
     end
 
-    self.turns.create(
+    turn = self.turns.create(
       player_id: current_player[:id],
       judge_id: judge_player[:id],
       round: current_round.floor
     )
 
-    broadcast_update target: "container_game_#{self.id}", partial: 'games/turn', locals: { game: self, player: current_player }
+    broadcast_update target: "container_game_#{self.id}", partial: 'games/turn', locals: { game: self, turn: turn }
   end
 
   def current_turn

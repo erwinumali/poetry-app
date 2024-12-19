@@ -3,6 +3,10 @@ class GamesController < ApplicationController
   before_action :get_game, except: [:new, :create]
   before_action :ensure_host, only: [:remove_player, :ready, :start, :stop]
 
+  def index
+    redirect_to new_game_path
+  end
+
   def new
   end
 
@@ -50,7 +54,10 @@ class GamesController < ApplicationController
   def start
     @game.start_game!
 
-    redirect_to @game
+    respond_to do |format|
+      format.turbo_stream { head :ok }
+      format.html { redirect_to game_path(code: @game.code)}
+    end
   end
 
   def stop
@@ -90,7 +97,6 @@ class GamesController < ApplicationController
 
   def get_game
     @game = Game.find_by_code(params[:code])
-    @turn = @game&.current_turn
   end
 
   def user_created?
