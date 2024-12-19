@@ -48,6 +48,11 @@ export default class extends Controller {
 
     if (this.currentIdValue == target.dataset.playerId) {
       target.classList.add('current-player')
+
+      // Remove link if host
+      if (target.querySelector('.remove-link') != null) {
+        target.querySelector('.remove-link').remove()
+      }
     }
   }
 

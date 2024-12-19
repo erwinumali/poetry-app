@@ -14,7 +14,7 @@
 <div data-game-target="startButton" class="<%= 'hidden' if !(defined?(user_id) && game.host == user_id) %>" >
   <p> If everyone is ready start the game with this button:</p>
 
-  <%= form_with url: start_game_path(code: @game.code) do |form| %>
+  <%= form_with url: start_game_path(code: game.code) do |form| %>
     <%= form.submit 'Start Game!' %>
   <% end %>
 </div>

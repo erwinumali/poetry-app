@@ -28,6 +28,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_18_024853) do
     t.integer "score", default: 0
     t.integer "round", default: 1
     t.integer "game_id"
+    t.datetime "ended_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_turns_on_game_id"

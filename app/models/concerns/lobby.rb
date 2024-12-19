@@ -1,4 +1,6 @@
-class Lobby < ActiveSupport::Concern
+module Lobby
+  extend ActiveSupport::Concern
+
   included do
     def add_player(id, name)
       self.players ||= []

@@ -1,0 +1,40 @@
+.words {
+  display: flex;
+  gap: 3rem;
+
+  font-family: Raleway,HelveticaNeue,"Helvetica Neue",Helvetica,Arial,sans-serif
+}
+
+.words .card {
+  display: flex;
+  color: #555;
+  border: 1px #bbb solid;
+  border-radius: 20px;
+
+  flex: 1 1 0px;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+
+  height: 15rem;
+
+  cursor: pointer;
+}
+
+.card > .difficulty {
+  color: #999;
+}
+
+.card > .word {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.turn-actions {
+  margin-top: 7rem;
+}
+
+.turn-actions input[type=submit] {
+  background-color: #f77;
+}

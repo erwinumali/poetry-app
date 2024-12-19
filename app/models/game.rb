@@ -56,7 +56,11 @@ class Game < ApplicationRecord
       round: current_round.floor
     )
 
-    broadcast_update target: "container_game_#{self.id}", partial: 'games/player_turn', locals: { game: self, player: current_player }
+    broadcast_update target: "container_game_#{self.id}", partial: 'games/turn', locals: { game: self, player: current_player }
+  end
+
+  def current_turn
+    self.turns.active.last
   end
 
   private
@@ -65,16 +69,16 @@ class Game < ApplicationRecord
     (self.turns.count.to_f / self.players.count.to_f) + 1
   end
 
-  def current_turn
-    self.turns.active.last
-  end
-
   def generate_code
-    code = generate_code
+    code = random_four_letters
     while Game.exists?(code: code)
-      code = (0...4).map { ('A'..'Z').to_a[rand(26)] }.join
+      code = random_four_letters
     end
 
     self.code = code
+  end
+
+  def random_four_letters
+    (0...4).map { ('A'..'Z').to_a[rand(26)] }.join
   end
 end

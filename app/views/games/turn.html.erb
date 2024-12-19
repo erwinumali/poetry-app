@@ -1,0 +1,3 @@
+<%= render layout: 'layouts/container' do |game, user_id, turn| %>
+  <%= render partial: 'games/turn', locals: { game: game, turn: turn} %>
+<% end %>

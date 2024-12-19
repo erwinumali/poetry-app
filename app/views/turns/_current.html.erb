@@ -1,0 +1,21 @@
+<div data-turn-target="timer" class="timer">
+  <h1>60<h1>
+</div>
+
+<div data-turn-target="words" class="words">
+  <div class="card">
+    <div class="difficulty">EASY (+1)</div>
+    <div data-turn-target="easyWord" class="word">LOREM</div>
+  </div>
+
+  <div class="card">
+    <div class="difficulty">HARD (+3)</div>
+    <div data-turn-target="hardWord" class="word">IPSUM</div>
+  </div>
+</div>
+
+<div data-turn-target="actions" class="turn-actions">
+  <%= form_with url: '' do |form| %>
+    <%= form.submit 'Skip (-1)' %>
+  <% end %>
+</div>

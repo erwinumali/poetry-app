@@ -8,10 +8,9 @@
   data-game-ready-url-value="<%= ready_game_path(code: @game.code) %>"
   data-game-start-url-value="<%= start_game_path(code: @game.code) %>"
 >
-  <h1> Game Code: <%= @game.code %> </h1>
   <%= turbo_stream_from @game %>
 
   <turbo-frame id="<%= dom_id(@game, :container) %>">
-    <%= yield(@game, @user_id) %>
+    <%= yield(@game, @user_id, @turn) %>
   </turbo-frame>
 </div>

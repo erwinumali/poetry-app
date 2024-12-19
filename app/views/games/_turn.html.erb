@@ -1,0 +1,18 @@
+<div
+  data-controller="turn"
+  data-turn-timer-value="<%= '60' %>"
+  data-turn-easy-words-value="<%= @turn.words.easy.select(:id, :word).to_json %>"
+  data-turn-hard-words-value="<%= @turn.words.hard.select(:id, :word).to_json %>"
+>
+  <div>
+    <%= render partial: 'turns/current', locals: { turn: turn } %>
+  </div>
+
+  <div>
+    <%= render partial: 'turns/judge' %>
+  </div>
+
+  <div>
+    <%= render partial: 'turns/other' %>
+  </div>
+</div>

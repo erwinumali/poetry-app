@@ -71,6 +71,8 @@ class GamesController < ApplicationController
         render :show
       when :ready
         render :ready
+      when :player_turn
+        render :turn
       else
         puts 'Invalid game!'
         redirect_to new_game_path
@@ -88,6 +90,7 @@ class GamesController < ApplicationController
 
   def get_game
     @game = Game.find_by_code(params[:code])
+    @turn = @game&.current_turn
   end
 
   def user_created?
