@@ -13,6 +13,6 @@ words = YAML.load_file(Rails.root.join('db', 'words.yml'))
 
 %w{easy hard}.each do |difficulty|
   words[difficulty].each do |word|
-    Word.create(word: word, difficulty: difficulty)
+    Word.find_or_create_by!(word: word.downcase, difficulty: difficulty)
   end
 end

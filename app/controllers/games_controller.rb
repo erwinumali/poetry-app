@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
-  before_action :user_created?
+  include UserCreated
+
   before_action :get_game, except: [:new, :create]
   before_action :ensure_host, only: [:remove_player, :ready, :start, :stop]
 
@@ -97,12 +98,5 @@ class GamesController < ApplicationController
 
   def get_game
     @game = Game.find_by_code(params[:code])
-  end
-
-  def user_created?
-    @user_id = session[:user_id]
-    @user_name = session[:user_name]
-
-    redirect_to new_user_path unless @user_id && @user_name
   end
 end

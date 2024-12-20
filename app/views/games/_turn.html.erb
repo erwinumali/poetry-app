@@ -4,8 +4,10 @@
   data-turn-judge-id-value="<%= turn.judge_id %>"
 
   data-turn-timer-value="<%= game.time_per_turn %>"
-  data-turn-easy-words-value="<%= turn.words.easy.select(:id, :word).to_json %>"
-  data-turn-hard-words-value="<%= turn.words.hard.select(:id, :word).to_json %>"
+
+  data-turn-score-url-value="<%= score_game_turn_path(game.code, turn) %>"
+  data-turn-unscore-url-value="<%= unscore_game_turn_path(game.code, turn) %>"
+  data-turn-skip-url-value="<%= skip_game_turn_path(game.code, turn) %>"
 >
   <div data-turn-target="currentView" class="hidden">
     <%= render partial: 'turns/current', locals: { turn: turn } %>

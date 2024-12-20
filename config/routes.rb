@@ -24,6 +24,14 @@ Rails.application.routes.draw do
       post :start
       post :stop
     end
+
+    resources :turns, only: [] do
+      member do
+        post :score
+        post :unscore
+        post :skip
+      end
+    end
   end
 
   resources :users, only: [:new, :create]

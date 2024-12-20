@@ -2,23 +2,10 @@
   <h1>60<h1>
 </div>
 
-<div data-turn-target="words" class="words">
-  <% easy_word = turn.words.easy.first %>
-  <% hard_word = turn.words.hard.first %>
-
-  <div class="card">
-    <div class="difficulty">EASY (+1)</div>
-    <div data-turn-target="easyWord" class="word" data-word-id="<%= easy_word.id %>"><%= easy_word.word.upcase %></div>
-  </div>
-
-  <div class="card">
-    <div class="difficulty">HARD (+3)</div>
-    <div data-turn-target="hardWord" class="word" data-word-id="<%= hard_word.id %>"><%= hard_word.word.upcase %></div>
-  </div>
-</div>
+<turbo-frame id="<%= dom_id(turn.current_sub_turn) %>">
+  <%= render partial: 'turns/sub_turn', locals: { sub_turn: turn.current_sub_turn } %>
+</turbo-frame>
 
 <div data-turn-target="actions" class="turn-actions">
-  <%= form_with url: '' do |form| %>
-    <%= form.submit 'Pass (-1)' %>
-  <% end %>
+  <button data-action="click->turn#skip">SKIP (-1)</button>
 </div>

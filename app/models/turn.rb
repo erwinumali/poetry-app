@@ -1,4 +1,6 @@
 class Turn < ApplicationRecord
+  include Scoring
+
   belongs_to :game
   has_many :sub_turns
   has_and_belongs_to_many :words
@@ -11,6 +13,9 @@ class Turn < ApplicationRecord
   def end_turn!
     self.done!
     self.ended_at = Time.now
+
+    # Clear unused words
+    self.words.delete
   end
 
   def seconds_left
@@ -25,6 +30,10 @@ class Turn < ApplicationRecord
     self.words.delete(hard_word)
 
     self.sub_turns.create(easy_word: easy_word.word, hard_word: hard_word.word)
+  end
+
+  def current_sub_turn
+    self.sub_turns.active.first
   end
 
   private

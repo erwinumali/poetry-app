@@ -5,13 +5,14 @@
   font-family: Raleway,HelveticaNeue,"Helvetica Neue",Helvetica,Arial,sans-serif
 }
 
-.words .card {
+.words > .card-container {
+  flex: 1 1 0px;
+}
+
+.card-container > .card {
   display: flex;
-  color: #555;
-  border: 1px #bbb solid;
   border-radius: 20px;
 
-  flex: 1 1 0px;
   justify-content: center;
   align-items: center;
 
@@ -20,13 +21,36 @@
   height: 15rem;
 
   cursor: pointer;
+
+  transition: all 0.3s ease;
 }
 
-.card > .difficulty {
+.card.unscored {
+  color: #555;
+  border: 1px #ddd solid;
+  background-color: #f9f9f9;
+}
+
+.card.scored {
+  color: #fff;
+  background-color: #3cec65;
+  border-color: #1e7e34;
+}
+
+.card.disabled {
+  color: #aaa;
+  background-color: #f0f0f0;
+  border-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none; /* Prevent any interaction */
+}
+
+.card .difficulty {
   color: #999;
 }
 
-.card > .word {
+.card .word {
   font-size: 2rem;
   font-weight: bold;
 }
@@ -35,6 +59,7 @@
   margin-top: 7rem;
 }
 
-.turn-actions input[type=submit] {
+.turn-actions button {
   background-color: #ff8585;
+  border-radius: 10px;
 }

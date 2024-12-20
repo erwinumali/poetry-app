@@ -7,11 +7,14 @@ export default class extends Controller {
 
   static values = {
     timer: Number,
+
     playerId: String,
     judgeId: String,
     currentId: String,
-    easyWords: Array,
-    hardWords: Array
+
+    scoreUrl: String,
+    unscoreUrl: String,
+    skipUrl: String
   }
 
   connect() {
@@ -20,6 +23,30 @@ export default class extends Controller {
     this._countdown()
 
     this._renderView()
+  }
+
+  score({ params }) {
+    fetch(this.scoreUrlValue, {
+      method: 'POST',
+      headers: this._getFetchHeaders(),
+      body: JSON.stringify({ word: params['word'] })
+    })
+  }
+
+  unscore({ params }) {
+    fetch(this.unscoreUrlValue, {
+      method: 'POST',
+      headers: this._getFetchHeaders(),
+      body: JSON.stringify({ word: params['word'] })
+    })
+  }
+
+  skip() {
+    fetch(this.skipUrlValue, {
+      method: 'POST',
+      headers: this._getFetchHeaders(),
+      body: JSON.stringify({  })
+    })
   }
 
   _currentId() {
@@ -56,17 +83,11 @@ export default class extends Controller {
     }
   }
 
-  _setWord() {
-    let easyWords = this.easyWordsValue,
-        hardWords = this.hardWordsValue
-
-    let easyWord = easyWords.pop()
-    this.easyWordsValue = easyWords
-    this.easyWordTarget.innerHTML = easyWord['word'].toUpperCase()
-
-    let hardWord = hardWords.pop()
-    this.hardWordsValue = hardWords
-    this.hardWordTarget.innerHTML = hardWord['word'].toUpperCase()
+  _getFetchHeaders() {
+    return {
+      Accept: "text/vnd.turbo-stream.html",
+      'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      'Content-Type': 'application/json'
+    }
   }
-
 }

@@ -1,0 +1,5 @@
+<div class="card <%= scored ? 'scored' : 'unscored' %>" data-action="click->turn#<%= scored ? 'unscore' : 'score' %>" data-turn-word-param="<%= word %>">
+  <div class="difficulty"><%= "#{difficulty.to_s.upcase} (#{difficulty == :easy ? '+1' : '+3'})" %></div>
+  <div data-turn-target="<%= "#{difficulty}Word" %>" class="word"><%= word.upcase %></div>
+</div>
+

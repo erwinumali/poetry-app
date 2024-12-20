@@ -1,0 +1,9 @@
+<div data-turn-target="words" class="words" data-sub-turn-id="<%= sub_turn.id %>">
+  <turbo-frame id="<%= dom_id(sub_turn, :easy) %>" class="card-container">
+    <%= render partial: 'turns/word', locals: { word: sub_turn.easy_word, difficulty: :easy, scored: false } %>
+  </turbo-frame>
+
+  <turbo-frame id="<%= dom_id(sub_turn, :hard) %>" class="card-container">
+    <%= render partial: 'turns/word', locals: { word: sub_turn.hard_word, difficulty: :hard, scored: false } %>
+  </turbo-frame>
+</div>

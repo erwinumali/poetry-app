@@ -11,18 +11,6 @@ export default class extends Controller {
     startUrl: String
   }
 
-  initialize() {
-  }
-
-  start() {
-    fetch(this.startUrlValue, {
-      method: 'POST',
-      headers: this._getFetchHeaders(),
-    }).
-      then(response => response.text()).
-      then(html => this.element.innerHTML = html)
-  }
-
   ready(e) {
     if (this.playerTargets.length % 2 != 0) {
       alert('This game requires an even number of players!')
@@ -53,16 +41,6 @@ export default class extends Controller {
       if (target.querySelector('.remove-link') != null) {
         target.querySelector('.remove-link').remove()
       }
-    }
-  }
-
-  // Private
-  //
-  _getFetchHeaders() {
-    return {
-      Accept: "text/vnd.turbo-stream.html",
-      'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-      'Content-Type': 'application/json'
     }
   }
 }
