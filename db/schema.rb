@@ -37,7 +37,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_19_041352) do
     t.integer "state"
     t.string "player_id"
     t.string "judge_id"
-    t.integer "score", default: 0
+    t.integer "total_score", default: 0
     t.integer "round", default: 1
     t.integer "game_id"
     t.datetime "ended_at"

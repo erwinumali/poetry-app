@@ -10,6 +10,33 @@ class Turn < ApplicationRecord
   before_create :set_words
   after_create :create_sub_turn
 
+  def next_sub_turn(type)
+    if type == 'bonk'
+      self.total_score -= 1
+      self.current_sub_turn.update(score: -1)
+    else
+      # Skip (-1)
+      if self.current_sub_turn.score == 0
+        self.total_score -= 1
+        self.current_sub_turn.update(score: -1)
+      # Pass
+      else
+        self.total_score += self.current_sub_turn.score
+      end
+    end
+
+    previous_sub_turn = self.current_sub_turn
+    self.current_sub_turn.done!
+
+    if self.words.count < 2
+      broadcast_empty_sub_turn(previous_sub_turn)
+    else
+      self.create_sub_turn
+
+      broadcast_sub_turn(previous_sub_turn)
+    end
+  end
+
   def end_turn!
     self.done!
     self.ended_at = Time.now
@@ -38,11 +65,23 @@ class Turn < ApplicationRecord
 
   private
 
+  def broadcast_sub_turn(previous_sub_turn)
+    broadcast_replace_to self.game,
+      target: "sub_turn_#{previous_sub_turn.id}",
+      partial: 'turns/sub_turn', locals: { sub_turn: self.current_sub_turn }
+  end
+
+  def broadcast_empty_sub_turn(previous_sub_turn)
+    broadcast_replace_to self.game,
+      target: "sub_turn_#{previous_sub_turn.id}",
+      partial: 'turns/empty_sub_turn'
+  end
+
   def set_words
     previous_words = Word.joins(:turns).where(turns: { game_id: self.game_id })
 
-    easy_words = (Word.all.easy - previous_words).sample(5)
-    hard_words = (Word.all.hard - previous_words).sample(5)
+    easy_words = (Word.all.easy - previous_words).sample(10)
+    hard_words = (Word.all.hard - previous_words).sample(10)
 
     self.words = easy_words + hard_words
   end

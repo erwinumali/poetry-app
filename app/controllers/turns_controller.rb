@@ -15,6 +15,7 @@ class TurnsController < ApplicationController
   end
 
   def skip
+    @turn.next_sub_turn(params[:type])
     head :ok
   end
 

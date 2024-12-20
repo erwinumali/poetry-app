@@ -12,6 +12,4 @@
   <h1>120<h1>
 </div>
 
-<turbo-frame id="<%= dom_id(turn.current_sub_turn) %>">
-  <%= render partial: 'turns/sub_turn', locals: { sub_turn: turn.current_sub_turn } %>
-</turbo-frame>
+<%= render partial: 'turns/sub_turn', locals: { sub_turn: turn.current_sub_turn } %>

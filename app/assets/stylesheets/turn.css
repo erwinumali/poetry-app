@@ -77,12 +77,14 @@
 .skip-button {
   color: #fff;
   background-color: #ff8585;
+  border-color: #ff8585;
   border-radius: 10px;
 }
 
 .pass-button {
   color: #000;
   background-color: #3cec65;
+  border-color: #3cec65;
   border-radius: 10px;
 }
 

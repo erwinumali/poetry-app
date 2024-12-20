@@ -25,13 +25,8 @@ export default class extends Controller {
     this._renderView()
   }
 
-  wordTargetConnected(target) {
-    if (this._isPlayer()) {
-      this._renderSkip()
-      this._setWordsUnclickable()
-    }
-  }
-
+  // Actions
+  //
   score(e) {
     if (e.target.classList.contains('disabled') || this._isPlayer()) {
       return
@@ -60,7 +55,7 @@ export default class extends Controller {
     }).then(() => this._enableButtons())
   }
 
-  skip() {
+  skip(e) {
     if (e.target.classList.contains('disabled')) { return }
 
     this._disableButtons()
@@ -68,10 +63,25 @@ export default class extends Controller {
     fetch(this.skipUrlValue, {
       method: 'POST',
       headers: this._getFetchHeaders(),
-      body: JSON.stringify({  })
+      body: JSON.stringify({ type: e.params['skip'] })
     })
   }
 
+  // Callbacks
+  //
+  wordTargetConnected(target) {
+    if (this._isPlayer()) {
+      this._renderPass()
+      this._setWordsUnclickable()
+    }
+  }
+
+  skipTargetConnected(target) {
+    this._renderSkip()
+  }
+
+  // Private
+  //
   _currentId() {
     return document.querySelector('div[data-controller="game"]').dataset['gameCurrentIdValue']
   }
@@ -103,18 +113,16 @@ export default class extends Controller {
       this.playerHeaderTarget.classList.remove('hidden')
 
       this._setWordsUnclickable()
-
-      this.skipTarget.querySelector('[data-skip-type="skip"]').classList.remove('hidden')
     }
     else if (this._isJudge()) {
       this.currentViewTarget.classList.remove('hidden')
       this.judgeHeaderTarget.classList.remove('hidden')
-
-      this.skipTarget.querySelector('[data-skip-type="bonk"]').classList.remove('hidden')
     }
     else {
       this.otherViewTarget.classList.remove('hidden')
     }
+
+    this._renderSkip()
   }
 
   _disableButtons() {
@@ -142,6 +150,15 @@ export default class extends Controller {
   }
 
   _renderSkip() {
+    if (this._isPlayer()) {
+      this.skipTarget.querySelector('[data-skip-type="skip"]').classList.remove('hidden')
+    }
+    else if (this._isJudge()) {
+      this.skipTarget.querySelector('[data-skip-type="bonk"]').classList.remove('hidden')
+    }
+  }
+
+  _renderPass() {
     const scoredCount = document.querySelectorAll('.scored[data-turn-target="word"]').length
 
     if (scoredCount == 0) {

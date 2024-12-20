@@ -5,7 +5,7 @@ class CreateTurns < ActiveRecord::Migration[8.0]
 
       t.string :player_id
       t.string :judge_id
-      t.integer :score, default: 0
+      t.integer :total_score, default: 0
       t.integer :round, default: 1
 
       t.belongs_to :game

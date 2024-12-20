@@ -1,13 +1,15 @@
-<div data-turn-target="words" class="words" data-sub-turn-id="<%= sub_turn.id %>">
-  <turbo-frame id="<%= dom_id(sub_turn, :easy) %>" class="card-container">
-    <%= render partial: 'turns/word', locals: { word: sub_turn.easy_word, difficulty: :easy, scored: false } %>
-  </turbo-frame>
+<turbo-frame id="<%= dom_id(sub_turn) %>">
+  <div data-turn-target="words" class="words" data-sub-turn-id="<%= sub_turn.id %>">
+    <turbo-frame id="<%= dom_id(sub_turn, :easy) %>" class="card-container">
+      <%= render partial: 'turns/word', locals: { word: sub_turn.easy_word, difficulty: :easy, scored: false } %>
+    </turbo-frame>
 
-  <turbo-frame id="<%= dom_id(sub_turn, :hard) %>" class="card-container">
-    <%= render partial: 'turns/word', locals: { word: sub_turn.hard_word, difficulty: :hard, scored: false } %>
-  </turbo-frame>
-</div>
+    <turbo-frame id="<%= dom_id(sub_turn, :hard) %>" class="card-container">
+      <%= render partial: 'turns/word', locals: { word: sub_turn.hard_word, difficulty: :hard, scored: false } %>
+    </turbo-frame>
+  </div>
 
-<div data-turn-target="skip" id="<%= dom_id(sub_turn, :skip) %>" class="skip-container">
-  <%= render partial: 'turns/skip', locals: { sub_turn: sub_turn } %>
-</div
+  <div data-turn-target="skip" class="skip-container">
+    <%= render partial: 'turns/skip', locals: { sub_turn: sub_turn } %>
+  </div>
+</turbo-frame>
