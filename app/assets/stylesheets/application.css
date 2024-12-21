@@ -25,3 +25,15 @@
 .current-player {
   font-weight: bold;
 }
+
+table.turn-score td {
+  text-align: center;
+}
+
+table.turn-score tr.negative{
+  background-color: #ffa1a1;
+}
+
+table.turn-score td.scored {
+  background-color: #3cec65;
+}

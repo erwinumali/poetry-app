@@ -3,17 +3,19 @@
   data-turn-player-id-value="<%= turn.player_id %>"
   data-turn-judge-id-value="<%= turn.judge_id %>"
 
-  data-turn-timer-value="<%= game.time_per_turn %>"
+  data-turn-timer-value="<%= 10 %>"
 
   data-turn-score-url-value="<%= score_game_turn_path(game.code, turn) %>"
   data-turn-unscore-url-value="<%= unscore_game_turn_path(game.code, turn) %>"
   data-turn-skip-url-value="<%= skip_game_turn_path(game.code, turn) %>"
+
+  data-turn-end-turn-url-value="<%= end_turn_game_path(game.code) %>"
 >
   <div data-turn-target="currentView" class="hidden">
     <%= render partial: 'turns/current', locals: { turn: turn } %>
   </div>
 
   <div data-turn-target="otherView" class="hidden">
-    <%= render partial: 'turns/other' %>
+    <%= render partial: 'turns/other', locals: { game: game, turn: turn } %>
   </div>
 </div>

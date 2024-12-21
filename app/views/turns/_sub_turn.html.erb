@@ -1,11 +1,11 @@
 <turbo-frame id="<%= dom_id(sub_turn) %>">
   <div data-turn-target="words" class="words" data-sub-turn-id="<%= sub_turn.id %>">
     <turbo-frame id="<%= dom_id(sub_turn, :easy) %>" class="card-container">
-      <%= render partial: 'turns/word', locals: { word: sub_turn.easy_word, difficulty: :easy, scored: false } %>
+      <%= render partial: 'turns/word', locals: { word: sub_turn.easy_word, difficulty: :easy, scored: sub_turn.score == 1 || sub_turn.score == 4 } %>
     </turbo-frame>
 
     <turbo-frame id="<%= dom_id(sub_turn, :hard) %>" class="card-container">
-      <%= render partial: 'turns/word', locals: { word: sub_turn.hard_word, difficulty: :hard, scored: false } %>
+      <%= render partial: 'turns/word', locals: { word: sub_turn.hard_word, difficulty: :hard, scored: sub_turn.score == 3 || sub_turn.score == 4 } %>
     </turbo-frame>
   </div>
 

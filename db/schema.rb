@@ -17,6 +17,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_19_041352) do
     t.string "host"
     t.integer "rounds", default: 2
     t.integer "time_per_turn", default: 120
+    t.integer "mad_score", default: 0
+    t.integer "glad_score", default: 0
     t.text "players"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

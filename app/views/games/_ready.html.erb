@@ -4,7 +4,7 @@
   <tbody>
     <% game.players.each do |player| %>
       <tr data-game-target="player" data-player-id="<%= player[:id] %>">
-        <td class="player-team-<%= player[:team] %>"> <%= "#{player[:name]} (#{player[:team] == 1 ? 'Team Mad' : 'Team Glad'})" %></td>
+        <td class="player-team-<%= player[:team] %>"> <%= "#{player[:name]} (Team #{player[:team].capitalize})" %></td>
       </tr>
     <% end %>
   </tbody>

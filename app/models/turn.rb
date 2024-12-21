@@ -10,7 +10,7 @@ class Turn < ApplicationRecord
   before_create :set_words
   after_create :create_sub_turn
 
-  def next_sub_turn(type)
+  def update_total_score(type)
     if type == 'bonk'
       self.total_score -= 1
       self.current_sub_turn.update(score: -1)
@@ -24,6 +24,12 @@ class Turn < ApplicationRecord
         self.total_score += self.current_sub_turn.score
       end
     end
+
+    self.save
+  end
+
+  def next_sub_turn(type)
+    update_total_score(type)
 
     previous_sub_turn = self.current_sub_turn
     self.current_sub_turn.done!
@@ -61,6 +67,14 @@ class Turn < ApplicationRecord
 
   def current_sub_turn
     self.sub_turns.active.first
+  end
+
+  def current_player
+    @current_player ||= self.game.players.find { |player| player[:id] == self.player_id }
+  end
+
+  def current_judge
+    @current_judge ||= self.game.players.find { |player| player[:id] == self.judge_id }
   end
 
   private

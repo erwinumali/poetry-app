@@ -1,0 +1,10 @@
+<h1> Game has ended! </h1>
+
+<% if game.mad_score == game.glad_score %>
+  <h2> It's a TIE! Both teams score a total of <%= game.mad_score %> points! </h2>
+<% elsif game.mad_score > game.glad_score %>
+  <h2> Team Mad wins with <%= game.mad_score %> points! </h2>
+<% else %>
+  <h2> Team Glad wins with <%= game.glad_score %> points! </h2>
+<% end %>
+

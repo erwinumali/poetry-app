@@ -56,7 +56,7 @@
 .card.unclickable.scored {
   color: #000;
   border: none;
-  cursore: non-allowed;
+  cursor: non-allowed;
   pointer-events: none;
 }
 

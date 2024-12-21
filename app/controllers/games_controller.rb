@@ -2,7 +2,7 @@ class GamesController < ApplicationController
   include UserCreated
 
   before_action :get_game, except: [:new, :create]
-  before_action :ensure_host, only: [:remove_player, :ready, :start, :stop]
+  before_action :ensure_host, only: [:remove_player, :ready, :start]
 
   def index
     redirect_to new_game_path
@@ -61,9 +61,19 @@ class GamesController < ApplicationController
     end
   end
 
-  def stop
-    @game.finished!
-    redirect_to @game
+  def end_turn
+    # Ensure judge
+    head :ok unless @game.current_turn.judge_id == @user_id
+
+    @game.end_turn!
+
+    respond_to do |format|
+      format.turbo_stream { head :ok }
+      format.html { redirect_to game_path(code: @game.code)}
+    end
+  end
+
+  def end
   end
 
   private
@@ -81,13 +91,16 @@ class GamesController < ApplicationController
         render :ready
       when :player_turn
         render :turn
+      when :player_ready
+        render :player_ready
+      when :finished
+        render :end
       else
         puts 'Invalid game!'
         redirect_to new_game_path
       end
     else
-      case @game.state.to_sym
-      when :waiting
+      if @game.state.to_sym == :waiting
         @game.add_player(@user_id, @user_name)
       else
         puts 'Game has already started!'

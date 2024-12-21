@@ -14,7 +14,8 @@ export default class extends Controller {
 
     scoreUrl: String,
     unscoreUrl: String,
-    skipUrl: String
+    skipUrl: String,
+    endTurnUrl: String,
   }
 
   connect() {
@@ -67,12 +68,25 @@ export default class extends Controller {
     })
   }
 
+  endTurn() {
+    if (!this._isJudge()) { return }
+
+    fetch(this.endTurnUrlValue, {
+      method: 'POST',
+      headers: this._getFetchHeaders()
+    })
+  }
+
   // Callbacks
   //
   wordTargetConnected(target) {
     if (this._isPlayer()) {
       this._renderPass()
       this._setWordsUnclickable()
+
+      if (this._scoredCount() == 2) {
+        setTimeout(() => this.skip({ params: { }, target: target }), 300)
+      }
     }
   }
 
@@ -96,7 +110,7 @@ export default class extends Controller {
 
   _countdown() {
     if (this.timerValue == 0) {
-      // this._endTurn()
+      this.endTurn()
     }
     else {
       this.timerValue -= 1
@@ -152,6 +166,8 @@ export default class extends Controller {
   _renderSkip() {
     if (this._isPlayer()) {
       this.skipTarget.querySelector('[data-skip-type="skip"]').classList.remove('hidden')
+
+      this._renderPass()
     }
     else if (this._isJudge()) {
       this.skipTarget.querySelector('[data-skip-type="bonk"]').classList.remove('hidden')
@@ -159,9 +175,7 @@ export default class extends Controller {
   }
 
   _renderPass() {
-    const scoredCount = document.querySelectorAll('.scored[data-turn-target="word"]').length
-
-    if (scoredCount == 0) {
+    if (this._scoredCount() == 0) {
       this.skipTarget.querySelector('[data-skip-type="pass"]').classList.add('hidden')
       this.skipTarget.querySelector('[data-skip-type="skip"]').classList.remove('hidden')
     }
@@ -169,6 +183,10 @@ export default class extends Controller {
       this.skipTarget.querySelector('[data-skip-type="pass"]').classList.remove('hidden')
       this.skipTarget.querySelector('[data-skip-type="skip"]').classList.add('hidden')
     }
+  }
+
+  _scoredCount() {
+    return document.querySelectorAll('.scored[data-turn-target="word"]').length
   }
 
   _getFetchHeaders() {
