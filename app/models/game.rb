@@ -58,7 +58,7 @@ class Game < ApplicationRecord
     self.save
     self.current_turn.end_turn!
 
-    if current_round > self.rounds
+    if current_round >= self.rounds
       self.finished!
       broadcast_update target: "container_game_#{self.id}", partial: 'games/end', locals: { game: self }
     else

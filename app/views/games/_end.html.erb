@@ -8,4 +8,4 @@
   <h2> Team Glad wins with <%= game.glad_score %> points! </h2>
 <% end %>
 
-<%= link_to 'Return to Home', games_path %>
+<%= link_to 'Return to Home', new_game_path, data: { turbo: false } %>
