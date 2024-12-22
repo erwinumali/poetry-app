@@ -9,11 +9,11 @@
       <% end %>
     </div>
 
-    <input class="hidden" type="text" data-join-target="code" data-action="join#upcase keydown.enter->join#join" placeholder="Enter Game Code">
+    <input class="hidden" type="text" data-join-target="code" data-action="join#upcase keydown.enter->join#join:prevent" placeholder="Enter Game Code">
 
     <div>
-      <a href="#" class="button" data-action="join#join">Join Game</a>
-      <a href="#" class="hidden button" data-join-target="cancel" data-action="join#cancel">Cancel</a>
+      <a href="#" class="button" data-action="join#join:prevent">Join Game</a>
+      <a href="#" class="hidden button" data-join-target="cancel" data-action="join#cancel:prevent">Cancel</a>
     </div>
 
     <div>

@@ -48,7 +48,8 @@ class Turn < ApplicationRecord
     self.ended_at = Time.now
 
     # Clear unused words
-    self.words.delete
+    self.words = []
+    self.save
   end
 
   def seconds_left

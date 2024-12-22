@@ -17,7 +17,11 @@ class GamesController < ApplicationController
     @game.players << { id: session[:user_id], name: session[:user_name], score: 0 }
     @game.save
 
-    redirect_to game_path(code: @game.code)
+    if @game
+      redirect_to game_path(code: @game.code)
+    else
+      redirect_to new_game_path
+    end
   end
 
   def show
@@ -69,6 +73,7 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream { head :ok }
+      format.json { { status: 200 } }
       format.html { redirect_to game_path(code: @game.code) }
     end
   end

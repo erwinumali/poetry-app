@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = [ "create", "code", "cancel", "help" ]
 
-  join() {
+  join(e) {
     if (this.codeTarget.classList.contains('hidden')) {
       this.codeTarget.classList.remove('hidden')
       this.codeTarget.focus()

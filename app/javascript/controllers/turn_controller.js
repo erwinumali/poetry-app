@@ -31,7 +31,7 @@ export default class extends Controller {
   // Actions
   //
   score(e) {
-    if (e.target.classList.contains('disabled') || this._isPlayer()) {
+    if (e.target.classList.contains('disabled') || this._isJudge()) {
       return
     }
 
@@ -45,7 +45,7 @@ export default class extends Controller {
   }
 
   unscore(e) {
-    if (e.target.classList.contains('disabled') || this._isPlayer()) {
+    if (e.target.classList.contains('disabled') || this._isJudge()) {
       return
     }
 
@@ -84,11 +84,13 @@ export default class extends Controller {
   wordTargetConnected(target) {
     if (this._isPlayer()) {
       this._renderPass()
-      this._setWordsUnclickable()
 
       if (this._scoredCount() == 2) {
         setTimeout(() => this.skip({ params: { }, target: target }), 300)
       }
+    }
+    else if (this._isJudge()) {
+      this._setWordsUnclickable()
     }
   }
 
@@ -139,12 +141,12 @@ export default class extends Controller {
     if (this._isPlayer()) {
       this.currentViewTarget.classList.remove('hidden')
       this.playerHeaderTarget.classList.remove('hidden')
-
-      this._setWordsUnclickable()
     }
     else if (this._isJudge()) {
       this.currentViewTarget.classList.remove('hidden')
       this.judgeHeaderTarget.classList.remove('hidden')
+
+      this._setWordsUnclickable()
     }
     else {
       this.otherViewTarget.classList.remove('hidden')

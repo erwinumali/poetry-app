@@ -79,6 +79,9 @@
   background-color: #ff8585;
   border-color: #ff8585;
   border-radius: 10px;
+
+  height: 5rem;
+  width: 15rem;
 }
 
 .pass-button {
@@ -86,6 +89,9 @@
   background-color: #3cec65;
   border-color: #3cec65;
   border-radius: 10px;
+
+  height: 5rem;
+  width: 15rem;
 }
 
 .skip-button.disabled {

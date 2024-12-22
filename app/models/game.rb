@@ -7,10 +7,14 @@ class Game < ApplicationRecord
 
   enum :state, { waiting: 0, ready: 1, player_turn: 2, player_ready: 3, finished: 4}, default: :waiting
 
-  before_create :generate_code
+  before_create :generate_code, if: -> { code.nil? }
+
+  validates :code, presence: true, uniqueness: true 
 
   def prepare!
-    shuffled_players = self.players.shuffle.in_groups(2)
+    shuffled_players = self.players.shuffle
+    shuffled_players = shuffled_players.in_groups(2)
+
     shuffled_players[0].each { |player| player[:team] = :mad }
     shuffled_players[1].each { |player| player[:team] = :glad }
 
@@ -31,8 +35,7 @@ class Game < ApplicationRecord
   end
 
   def create_turn!
-    if current_round > self.rounds
-      puts "Game #{self.id} has ended"
+    if current_round > self.rounds || !self.current_turn.expired?
       return
     end
 
