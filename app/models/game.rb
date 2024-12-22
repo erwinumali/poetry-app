@@ -12,18 +12,7 @@ class Game < ApplicationRecord
   validates :code, presence: true, uniqueness: true 
 
   def prepare!
-    shuffled_players = self.players.shuffle
-    shuffled_players = shuffled_players.in_groups(2)
-
-    shuffled_players[0].each { |player| player[:team] = :mad }
-    shuffled_players[1].each { |player| player[:team] = :glad }
-
-    final_players = (self.players.count / 2).times.map do |i|
-      [shuffled_players[0][i], shuffled_players[1][i]]
-    end.flatten
-
-    self.players = final_players
-    save
+    self.shuffle_players!
 
     self.ready!
 
@@ -31,14 +20,19 @@ class Game < ApplicationRecord
   end
 
   def start_game!
+    # If the rounds have exceeded the max rounds
+    if current_round > self.rounds ||
+        # If the game is already finished
+        self.finished? ||
+        # If there's already an active turn
+        (self.current_turn && !self.current_turn.expired?)
+      return
+    end
+
     create_turn!
   end
 
   def create_turn!
-    if current_round > self.rounds || !self.current_turn.expired?
-      return
-    end
-
     self.player_turn!
 
     current_player, judge_player = next_players
@@ -112,5 +106,9 @@ class Game < ApplicationRecord
 
   def random_four_letters
     (0...4).map { ('A'..'Z').to_a[rand(26)] }.join
+  end
+
+  def test_game?
+    self.code.each_byte.all? { |byte| byte == self.code[0].ord }
   end
 end
