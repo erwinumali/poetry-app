@@ -7,7 +7,7 @@ class Game < ApplicationRecord
 
   enum :state, { waiting: 0, ready: 1, player_turn: 2, player_ready: 3, finished: 4}, default: :waiting
 
-  before_create :generate_code, if: -> { code.nil? }
+  before_validation :generate_code, if: -> { self.code.nil? }
 
   validates :code, presence: true, uniqueness: true 
 

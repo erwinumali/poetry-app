@@ -1,201 +1,252 @@
+---
 hard:
-  - abacus
-  - algebra
-  - algorithm
-  - anchor
-  - anvil
-  - aquarium
-  - architect
-  - archive
-  - arctic
-  - asteroid
-  - atom
-  - avalanche
-  - balloon
-  - bamboo
-  - barometer
-  - battery
-  - beehive
-  - bellows
-  - blacksmith
-  - blueprint
-  - boomerang
-  - boulder
-  - bronze
-  - canyon
-  - capsule
-  - castle
-  - cathedral
-  - chandelier
-  - charcoal
-  - chemistry
-  - chimney
-  - chronicle
-  - circus
-  - compass
-  - constellation
-  - coral
-  - corridor
-  - crater
-  - crystal
-  - curtain
-  - dandelion
-  - debut
-  - decibel
-  - dialect
-  - diamond
-  - disco
-  - dodecahedron
-  - domino
-  - donor
-  - echo
-  - eclipse
-  - elevator
-  - emerald
-  - encyclopedia
-  - energy
-  - engine
-  - equator
-  - escalator
-  - excavator
-  - factory
-  - fern
-  - fossil
-  - fountain
-  - freezer
-  - galaxy
-  - geyser
-  - glacier
-  - gnome
-  - goggles
-  - gourd
-  - granite
-  - gravity
-  - greenhouse
-  - hammock
-  - harmonica
-  - harbor
-  - headlamp
-  - horizon
-  - hurricane
-  - iceberg
-  - icicle
-  - igloo
-  - incubator
-  - innocent
-  - instruction
-  - jungle
-  - kaleidoscope
-  - kingdom
-  - laboratory
-  - lantern
-  - latitude
-  - lighthouse
-  - limestone
-  - longitude
-  - magnet
-  - magnetism
-  - mansion
-  - marble
-  - marsupial
-  - meadow
-  - meteor
-  - microscope
-  - mirror
-  - monsoon
-  - mosaic
-  - mountain
-  - observatory
-  - orbit
-  - orchid
-  - palace
-  - parachute
-  - petrified
-  - photograph
-  - plankton
-  - plateau
-  - pollen
-  - portcullis
-  - prism
-  - pyramid
-  - quartz
-  - quest
-  - question
-  - quota
-  - quiver
-  - radar
-  - radical
-  - rainbow
-  - raven
-  - rainforest
-  - reputation
-  - reservoir
-  - residence
-  - reveal
-  - revive
-  - revolution
-  - rhinoceros
-  - rickshaw
-  - robot
-  - rocket
-  - runway
-  - saffron
-  - satellite
-  - sandstorm
-  - sawdust
-  - sculpture
-  - shadow
-  - skyscraper
-  - snowflake
-  - solar
-  - spectrum
-  - sphere
-  - spiral
-  - sponge
-  - spring
-  - stalactite
-  - stalagmite
-  - stadium
-  - submarine
-  - sundial
-  - sunflower
-  - sunroof
-  - sunrise
-  - tapestry
-  - telescope
-  - temple
-  - tectonic
-  - terrarium
-  - thermometer
-  - thunderbolt
-  - thunderstorm
-  - timber
-  - toboggan
-  - tornado
-  - trebuchet
-  - treasure
-  - treetop
-  - tundra
-  - tunnel
-  - turbine
-  - twilight
-  - umbrella
-  - universe
-  - uranium
-  - urgency
-  - valley
-  - velvet
-  - volcano
-  - vortex
-  - waterfall
-  - watermark
-  - whirlpool
-  - wilderness
-  - windchime
-  - windmill
-  - wizard
-  - xray
-  - xylophone
-  - zephyr
-  - zeppelin
-  - zone
+- abacus
+- algebra
+- algorithm
+- anchor
+- anvil
+- aquarium
+- architect
+- archive
+- arctic
+- asteroid
+- astrology
+- atom
+- avalanche
+- bad hair day
+- balloon
+- bamboo
+- bank robber
+- barometer
+- bathing suit
+- battery
+- bed side
+- beehive
+- bellows
+- blacksmith
+- blood bank
+- blueprint
+- boomerang
+- boulder
+- boxing glove
+- bronze
+- canyon
+- capsule
+- castle
+- cathedral
+- chandelier
+- charcoal
+- chemistry
+- chimney
+- chronicle
+- circus
+- cold sweat
+- compass
+- constellation
+- coral
+- corridor
+- crater
+- crystal
+- curtain
+- dandelion
+- davao city
+- debut
+- decibel
+- dialect
+- diamond
+- disco
+- dishwasher
+- dodecahedron
+- domino
+- donor
+- echo
+- eclipse
+- electric fence
+- elevator
+- emerald
+- encyclopedia
+- energy
+- engine
+- equator
+- escalator
+- excavator
+- factory
+- fern
+- fossil
+- fountain
+- freezer
+- french fry
+- french toast
+- fruitcake
+- funeral home
+- galaxy
+- geyser
+- ghost town
+- glacier
+- gnome
+- goggles
+- gold rush
+- gourd
+- granite
+- gravity
+- greenhouse
+- hammock
+- handlebar
+- happy hour
+- harbor
+- harmonica
+- headlamp
+- horizon
+- hurricane
+- iceberg
+- icicle
+- igloo
+- incubator
+- innocent
+- instruction
+- jollibee
+- jungle
+- kaleidoscope
+- kfc
+- kingdom
+- krispy kreme
+- laboratory
+- lantern
+- latitude
+- leap frog
+- lighthouse
+- limestone
+- longitude
+- love letter
+- magnet
+- magnetism
+- mansion
+- marble
+- marsupial
+- meadow
+- meteor
+- metro manila
+- microscope
+- mind reader
+- mini golf
+- mirror
+- modern family
+- monsoon
+- mosaic
+- mountain
+- observatory
+- orbit
+- orchid
+- palace
+- parachute
+- petrified
+- philippines
+- photograph
+- plankton
+- plastic surgery
+- plateau
+- pollen
+- pop quiz
+- portcullis
+- prism
+- pyramid
+- quartz
+- quest
+- question
+- quiver
+- quota
+- radar
+- radical
+- rainbow
+- rainforest
+- raven
+- reputation
+- reservoir
+- residence
+- reveal
+- revive
+- revolution
+- rhinoceros
+- rickshaw
+- robot
+- rocket
+- runway
+- saffron
+- sandstorm
+- satellite
+- sawdust
+- sculpture
+- shadow
+- silver spoon
+- sinkhole
+- skyscraper
+- sleep walking
+- snake skin
+- snowflake
+- solar
+- spectrum
+- sphere
+- spiral
+- split ends
+- sponge
+- spring
+- stadium
+- stalactite
+- stalagmite
+- submarine
+- sunburn
+- sundial
+- sunflower
+- sunrise
+- sunroof
+- taco bell
+- tapestry
+- taste buds
+- tectonic
+- telescope
+- temple
+- terrarium
+- the beatles
+- thermometer
+- thunderbolt
+- thunderstorm
+- timber
+- titanic
+- toboggan
+- toilet paper
+- tongue-tied
+- top hat
+- tornado
+- toy story
+- treasure
+- trebuchet
+- treetop
+- trophy wife
+- trust fall
+- tundra
+- tunnel
+- turbine
+- twilight
+- umbrella
+- universe
+- uranium
+- urgency
+- valley
+- velvet
+- voicemail
+- volcano
+- vortex
+- waterfall
+- watermark
+- wedding ring
+- whirlpool
+- wilderness
+- windchime
+- windmill
+- window shopping
+- wizard
+- xray
+- xylophone
+- zephyr
+- zeppelin
+- zone

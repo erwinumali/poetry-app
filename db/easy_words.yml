@@ -1,200 +1,252 @@
+---
 easy:
-  - above
-  - after
-  - alive
-  - apple
-  - arm
-  - artist
-  - ash
-  - baby
-  - bag
-  - ball
-  - barn
-  - beach
-  - bed
-  - below
-  - bird
-  - blanket
-  - book
-  - box
-  - brush
-  - bucket
-  - bush
-  - cat
-  - cave
-  - chair
-  - clock
-  - cloud
-  - coin
-  - cold
-  - comb
-  - cook
-  - cow
-  - crawl
-  - cry
-  - cup
-  - cut
-  - dance
-  - dark
-  - day
-  - dog
-  - doll
-  - door
-  - down
-  - draw
-  - drink
-  - dry
-  - dusk
-  - eat
-  - early
-  - egg
-  - eye
-  - fall
-  - far
-  - fat
-  - fence
-  - field
-  - fire
-  - first
-  - fish
-  - flat
-  - flag
-  - flower
-  - fly
-  - foot
-  - forest
-  - fork
-  - forward
-  - frost
-  - full
-  - garden
-  - glass
-  - goat
-  - good
-  - grass
-  - grow
-  - hand
-  - happy
-  - hard
-  - hat
-  - heavy
-  - help
-  - here
-  - hill
-  - hit
-  - hold
-  - hot
-  - house
-  - ice
-  - inside
-  - jump
-  - key
-  - kick
-  - kind
-  - king
-  - kite
-  - knife
-  - lamp
-  - laugh
-  - leaf
-  - learn
-  - left
-  - light
-  - log
-  - love
-  - low
-  - map
-  - moon
-  - near
-  - nest
-  - new
-  - night
-  - noon
-  - nose
-  - ocean
-  - old
-  - open
-  - outside
-  - pan
-  - path
-  - pebble
-  - pick
-  - pillow
-  - pig
-  - plant
-  - plate
-  - play
-  - poor
-  - pot
-  - push
-  - rain
-  - read
-  - rich
-  - ride
-  - right
-  - river
-  - rock
-  - rope
-  - rough
-  - round
-  - rug
-  - run
-  - sand
-  - school
-  - seed
-  - sharp
-  - sheep
-  - shoe
-  - shiny
-  - short
-  - shout
-  - sit
-  - sky
-  - slide
-  - slow
-  - small
-  - smooth
-  - snow
-  - soft
-  - song
-  - spoon
-  - spring
-  - square
-  - stand
-  - star
-  - stick
-  - stone
-  - stop
-  - storm
-  - strong
-  - summer
-  - sun
-  - swing
-  - table
-  - tall
-  - talk
-  - teach
-  - there
-  - thin
-  - thunder
-  - time
-  - toy
-  - tree
-  - twig
-  - under
-  - up
-  - urine
-  - walk
-  - warm
-  - wash
-  - wave
-  - weak
-  - wet
-  - whisper
-  - window
-  - wind
-  - winter
-  - write
-  - yellow
-  - yard
-  - young
+- above
+- after
+- alive
+- ant
+- apple
+- arm
+- artist
+- ash
+- baby
+- bag
+- ball
+- banana
+- bank
+- barn
+- beach
+- bed
+- below
+- bike
+- bird
+- blanket
+- blood
+- book
+- box
+- brush
+- bucket
+- bush
+- cat
+- cave
+- ceiling
+- chair
+- clock
+- cloud
+- coin
+- cold
+- comb
+- computer
+- cook
+- cow
+- crab
+- crawl
+- cry
+- cup
+- cut
+- dance
+- dark
+- day
+- dog
+- doll
+- door
+- doughnut
+- down
+- draw
+- drink
+- dry
+- dusk
+- early
+- eat
+- egg
+- email
+- empty
+- eye
+- fall
+- family
+- far
+- fat
+- fence
+- field
+- finger
+- fire
+- first
+- fish
+- flag
+- flat
+- floor
+- flower
+- fly
+- foot
+- forest
+- fork
+- forward
+- frog
+- frost
+- fruit
+- fry
+- full
+- funeral
+- garden
+- ghost
+- glass
+- glove
+- goat
+- gold
+- golf
+- good
+- grass
+- grow
+- hair
+- hand
+- handle
+- happy
+- hard
+- hat
+- head
+- heavy
+- help
+- here
+- hill
+- hit
+- hold
+- hot
+- house
+- ice
+- inside
+- jump
+- key
+- kick
+- kind
+- king
+- kite
+- knife
+- lamp
+- laugh
+- leaf
+- learn
+- left
+- light
+- log
+- love
+- low
+- mall
+- mango
+- map
+- mind
+- moon
+- mouse
+- near
+- nest
+- new
+- newspaper
+- night
+- noon
+- nose
+- ocean
+- old
+- open
+- orange
+- outside
+- pan
+- path
+- pebble
+- pick
+- pig
+- pillow
+- plant
+- plate
+- play
+- poor
+- pot
+- push
+- quiz
+- rain
+- read
+- refrigerator
+- rich
+- ride
+- right
+- river
+- rock
+- rope
+- rough
+- round
+- rug
+- run
+- sand
+- school
+- seed
+- sharp
+- sheep
+- shiny
+- shoe
+- short
+- shout
+- side
+- sink
+- sit
+- skin
+- sky
+- slide
+- slow
+- small
+- smartphone
+- smooth
+- snow
+- soft
+- song
+- split
+- spoon
+- spring
+- square
+- stand
+- star
+- stick
+- stone
+- stop
+- storm
+- strong
+- suit
+- summer
+- sun
+- surgery
+- sweat
+- swing
+- table
+- taco
+- talk
+- tall
+- tape
+- taste
+- teach
+- teacher
+- there
+- thin
+- thunder
+- time
+- toilet
+- tongue
+- toy
+- tree
+- twig
+- under
+- up
+- urine
+- voice
+- walk
+- warm
+- wash
+- wave
+- weak
+- wedding
+- wet
+- whale
+- whisper
+- wife
+- wind
+- window
+- winter
+- write
+- yard
+- yellow
+- young
