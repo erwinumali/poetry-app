@@ -22,7 +22,6 @@ Rails.application.routes.draw do
 
       post :ready
       post :start
-      post :stop
       post :end_turn
     end
 

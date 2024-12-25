@@ -88,9 +88,6 @@ class GamesController < ApplicationController
     end
   end
 
-  def end
-  end
-
   private
 
   def ensure_host

@@ -136,7 +136,12 @@ export default class extends Controller {
 
   _countdown() {
     if (this.timerValue == 0) {
-      this.endTurn()
+      if (this._isJudge()) {
+        this.endTurn()
+      }
+      else {
+        this.currentViewTarget.classList.add('hidden')
+      }
     }
     else {
       this.timerValue -= 1

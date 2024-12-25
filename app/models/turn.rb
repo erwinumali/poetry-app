@@ -14,6 +14,8 @@ class Turn < ApplicationRecord
     if type == 'bonk'
       self.total_score -= 1
       self.current_sub_turn.update(score: -1)
+    elsif type == 'end_turn'
+      self.total_score += self.current_sub_turn.score
     else
       # Skip (-1)
       if self.current_sub_turn.score == 0
@@ -44,6 +46,8 @@ class Turn < ApplicationRecord
   end
 
   def end_turn!
+    update_total_score('end_turn')
+
     self.done!
     self.ended_at = Time.now
 
@@ -79,7 +83,7 @@ class Turn < ApplicationRecord
   end
 
   def expired?
-    self.active? && self.seconds_left < 0
+    self.active? && self.seconds_left < 5
   end
 
   private

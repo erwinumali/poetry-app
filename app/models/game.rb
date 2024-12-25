@@ -47,13 +47,15 @@ class Game < ApplicationRecord
   end
 
   def end_turn!
+    last_turn = self.current_turn
+    last_turn.end_turn!
+
     if last_player[:team] == :mad
-      self.mad_score += self.current_turn.total_score
+      self.mad_score += last_turn.total_score
     else
-      self.glad_score += self.current_turn.total_score
+      self.glad_score += last_turn.total_score
     end
     self.save
-    self.current_turn.end_turn!
 
     if current_round >= self.rounds
       self.finished!

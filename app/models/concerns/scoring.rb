@@ -3,6 +3,8 @@ module Scoring
 
   included do
     def score(word)
+      return if self.expired?
+
       sub_turn = self.current_sub_turn
 
       # Score only if the word isn't scored yet
@@ -21,6 +23,8 @@ module Scoring
     end
 
     def unscore(word)
+      return if self.expired?
+
       sub_turn = self.current_sub_turn
 
       if sub_turn.easy_word == word
