@@ -14,10 +14,26 @@
           <td> <%= sub_turn.score %> </td>
         </tr>
       <% end %>
+      <tr>
+        <td colspan="2"> Total: </td>
+        <td><strong><%= last_turn.total_score %></strong></td>
+      </tr>
     </tbody>
   </table>
 
-  <p> <%= last_player[:name] %> scored a total of <strong><%= last_turn.total_score %></strong> points! Team <%= last_player[:team].to_s.capitalize %> now has a total score of <strong><%= last_player[:team] == :mad ? game.mad_score : game.glad_score %></strong> points! </p>
+  <p> Here are the standings: </p>
+  <table class="turn-score u-full-width">
+    <tbody>
+      <tr class="player-team-mad">
+        <td> Team Mad </td>
+        <td><strong><%= game.mad_score %></strong></td>
+      </tr>
+      <tr class="player-team-glad">
+        <td> Team Glad </td>
+        <td><strong><%= game.glad_score %></strong></td>
+      </tr>
+    </tbody>
+  </table>
 
   <p> The next player is: <strong><%= game.next_players[0][:name] %></strong>.
   <p> The judge is: <strong><%= game.next_players[1][:name] %></strong>.

@@ -20,7 +20,7 @@ export default class extends Controller {
       alert('This game requires at least 2 players!')
       e.preventDefault();
     }
-    else if (this.playerTargets.length > 10) {
+    else if (this.playerTargets.length > 12) {
       alert('This game supports a maximum of 10 players!')
       e.preventDefault();
     }

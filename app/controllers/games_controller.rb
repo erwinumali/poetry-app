@@ -132,6 +132,6 @@ class GamesController < ApplicationController
   def invalid_player_count
     @game.players.count % 2 != 0 ||
       @game.players.count < 2 ||
-      @game.players.count > 10
+      @game.players.count > 12
   end
 end
