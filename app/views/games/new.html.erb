@@ -1,4 +1,4 @@
-<h1> Welcome, <%= @user_name %>! </h1>
+<h1>🧌 <%= @user_name %> </h1>
 <div data-controller="join">
   <div class="join-container">
     <div data-join-target="create">
@@ -18,6 +18,10 @@
 
     <div>
       <%= link_to 'How to play', 'https://cdn.shopify.com/s/files/1/0345/9180/1483/files/EK_Poetry-For-Neanderthals_Grab-N-Game_2023.pdf?v=1712786117', target: '_blank', class: 'button', data: { 'join-target': 'help' } %>
+    </div>
+
+    <div>
+      <%= link_to 'Logout', users_path, class: 'button logout', data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
     </div>
   </div>
 </div>

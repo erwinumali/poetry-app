@@ -29,6 +29,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_19_041352) do
     t.string "easy_word"
     t.string "hard_word"
     t.integer "state"
+    t.integer "skip_type"
     t.integer "turn_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

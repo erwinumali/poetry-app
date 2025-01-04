@@ -5,6 +5,7 @@ class CreateSubTurns < ActiveRecord::Migration[8.0]
       t.string :easy_word
       t.string :hard_word
       t.integer :state
+      t.integer :skip_type
 
       t.belongs_to :turn
       t.timestamps

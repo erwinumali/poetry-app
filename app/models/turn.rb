@@ -13,14 +13,14 @@ class Turn < ApplicationRecord
   def update_total_score(type)
     if type == 'bonk'
       self.total_score -= 1
-      self.current_sub_turn.update(score: -1)
+      self.current_sub_turn.update(score: -1, skip_type: :bonk)
     elsif type == 'end_turn'
       self.total_score += self.current_sub_turn.score
     else
       # Skip (-1)
       if self.current_sub_turn.score == 0
         self.total_score -= 1
-        self.current_sub_turn.update(score: -1)
+        self.current_sub_turn.update(score: -1, skip_type: :skip)
       # Pass
       else
         self.total_score += self.current_sub_turn.score
@@ -86,7 +86,14 @@ class Turn < ApplicationRecord
 
   def expired?
     # Within half a second
-    self.active? && self.milliseconds_left < 500
+    self.active? && self.milliseconds_left < -500
+  end
+
+  # Only end the turn if the turn has expired or
+  # the turn has ran out of words
+  def endable?
+    self.active? &&
+      ( self.milliseconds_left < 500 || self.words.count < 2 )
   end
 
   private

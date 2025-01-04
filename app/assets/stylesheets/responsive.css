@@ -1,0 +1,13 @@
+/* Mobile */
+@media (350px <= width <= 550px) {
+  .main-content {
+    min-width: 95%;
+  }
+}
+
+/* Larger than mobile */
+@media (550px < width) {
+  .main-content {
+    min-width: 40%;
+  }
+}

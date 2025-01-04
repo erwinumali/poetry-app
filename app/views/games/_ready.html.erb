@@ -11,7 +11,7 @@
         <tr class="<%= sub_turn.score < 0 ? 'negative' : '' %>" >
           <td <%= 'class=scored' if sub_turn.score == 1 || sub_turn.score == 4 %>> <%= sub_turn.easy_word %> </td>
           <td <%= 'class=scored' if sub_turn.score == 3 || sub_turn.score == 4 %>> <%= sub_turn.hard_word %> </td>
-          <td> <%= sub_turn.score %> </td>
+          <td> <%= sub_turn.score == -1 ? "#{sub_turn.skip_type.to_s.capitalize} (-1)" : sub_turn.score %> </td>
         </tr>
       <% end %>
       <tr>

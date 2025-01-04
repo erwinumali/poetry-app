@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :user_created?
+  before_action :user_created?, only: [:new, :create]
 
   def new
   end
@@ -9,6 +9,11 @@ class UsersController < ApplicationController
     session[:user_name] = params[:name]
 
     redirect_to new_game_path
+  end
+
+  def destroy
+    reset_session
+    redirect_to new_user_path
   end
 
   private

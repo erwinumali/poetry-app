@@ -33,6 +33,10 @@ form.no-margin {
   width: 20rem;
 }
 
+p.subtitle {
+  color: grey;
+}
+
 .player-list td {
   text-align: center;
 }
@@ -67,4 +71,9 @@ table.turn-score tr.negative{
 
 table.turn-score td.scored {
   background-color: #3cec65;
+}
+
+a.logout {
+  background-color: #ff8585;
+  color: white;
 }
