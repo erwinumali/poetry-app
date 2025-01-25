@@ -38,8 +38,8 @@
   <p> The next player is: <strong><%= game.next_players[0][:name] %></strong>.
   <p> The judge is: <strong><%= game.next_players[1][:name] %></strong>.
 
-  <div data-game-target="startButton" class="hidden">
-    <p> When the participants ready, click the button below to pass the game to them: </p>
+  <div data-game-target="startButton" class="hidden" data-next-player-id="<%= game.next_players[0][:id] %>">
+    <p> If you are ready, click the button to continue:</p>
 
     <%= form_with url: start_game_path(code: game.code) do |form| %>
       <%= form.submit 'Continue!' %>
@@ -65,8 +65,8 @@
   </table>
   <p> Please sit in a circle in this order! We'll start with player: <strong><%= game.players.first[:name] %></strong> and judge: <strong><%= game.players.last[:name] %></strong></p>
 
-  <div data-game-target="startButton" class="hidden">
-    <p> If everyone is ready, start the game with this button:</p>
+  <div data-game-target="startButton" class="hidden" data-next-player-id="<%= game.players.first[:id] %>">
+    <p> If you are ready, start the game with this button: </p>
 
     <%= form_with url: start_game_path(code: game.code) do |form| %>
       <%= form.submit 'Start Game!' %>

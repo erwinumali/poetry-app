@@ -2,7 +2,8 @@ class GamesController < ApplicationController
   include UserCreated
 
   before_action :get_game, except: [ :new, :create ]
-  before_action :ensure_host, only: [ :remove_player, :ready, :start ]
+  before_action :ensure_host, only: [ :remove_player, :ready ]
+  before_action :ensure_next_player, only: [ :start ]
 
   def index
     redirect_to new_game_path
@@ -86,6 +87,10 @@ class GamesController < ApplicationController
 
   def ensure_host
     redirect_to root_path unless @game.host == @user_id
+  end
+
+  def ensure_next_player
+    redirect_to root_path unless @game.next_players.first[:id] == @user_id
   end
 
   def handle_game_state

@@ -29,7 +29,7 @@ export default class extends Controller {
   // Callbacks
   //
   startButtonTargetConnected(target) {
-    if (this.hostValue == 'true') {
+    if (this.currentIdValue == target.dataset.nextPlayerId) {
       target.classList.remove('hidden')
     }
   }

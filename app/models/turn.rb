@@ -65,8 +65,8 @@ class Turn < ApplicationRecord
   end
 
   def expired?
-    # Within half a second
-    self.active? && self.milliseconds_left < -500
+    # Within a second
+    self.active? && self.milliseconds_left < -1000
   end
 
   # Only end the turn if the turn has expired or
