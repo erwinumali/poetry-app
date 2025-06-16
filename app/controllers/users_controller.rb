@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   private
-  
+
   def user_created?
     if session[:user_id] && session[:user_name]
       redirect_to new_game_path
