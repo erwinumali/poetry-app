@@ -1,0 +1,39 @@
+<h2> Game is starting! </h2>
+<h5 class="team-mad-heading">Team Mad</h5>
+<ol>
+  <% game.players.select { |p| p[:team] == :mad }.each do |player| %>
+    <li><%= player[:name] %></li>
+  <% end %>
+</ol>
+
+<h5 class="team-glad-heading">Team Glad</h5>
+<ol>
+  <% game.players.select { |p| p[:team] == :glad }.each do |player| %>
+    <li><%= player[:name] %></li>
+  <% end %>
+</ol>
+
+<h4>The sitting order:</h4>
+<table class="player-list u-full-width">
+  <tbody>
+    <% game.players.each_with_index do |player, index| %>
+      <tr data-game-target="player" data-player-id="<%= player[:id] %>" class="player-team-<%= player[:team] %>" >
+        <td>
+          <%= "#{player[:name]} (Team #{player[:team].capitalize})" %>
+
+          <%= '<--- First player' if index == 0 %>
+          <%= '<--- Judge' if index == game.players.count - 1 %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<p> Please sit in a circle in this order! We'll start with <strong><%= game.players.first[:name] %></strong>, and <strong><%= game.players.last[:name] %></strong> as the judge.</p>
+
+<div data-game-target="startButton" class="hidden" data-next-player-id="<%= game.players.first[:id] %>">
+  <p> If you are ready, start the game with this button: </p>
+
+  <%= form_with url: start_game_path(code: game.code) do |form| %>
+    <%= form.submit 'Start Game!' %>
+  <% end %>
+</div>

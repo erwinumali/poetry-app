@@ -53,6 +53,14 @@ p.subtitle {
   font-weight: bold;
 }
 
+.team-mad-heading {
+  color: #e1792d;
+}
+
+.team-glad-heading {
+  color: #ffbc9a;
+}
+
 table tr.player-team-mad {
   background-color: #e1792d;
 }
