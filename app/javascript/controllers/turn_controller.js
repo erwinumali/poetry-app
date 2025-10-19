@@ -86,9 +86,10 @@ export default class extends Controller {
     if (this._isPlayer()) {
       this._renderPass()
 
-      if (this._scoredCount() == 2) {
-        setTimeout(() => this.skip({ params: { }, target: target }), 200)
-      }
+      // Autoskip
+      // if (this._scoredCount() == 2) {
+      //   setTimeout(() => this.skip({ params: { }, target: target }), 200)
+      // }
     }
     else if (this._isJudge()) {
       this._setWordsUnclickable()
