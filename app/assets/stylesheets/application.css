@@ -85,6 +85,10 @@ table.scoring-table td {
   width: 50%;
 }
 
+.flash-error {
+  color: #ff8585;
+}
+
 a.logout {
   background-color: #ff8585;
   color: white;

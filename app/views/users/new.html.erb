@@ -2,6 +2,8 @@
 <p class="subtitle">Ages 7+ | 4 - 12 players | 15 mins</p>
 
 <%= form_with local: true, url: users_path do |form| %>
+  <turbo-frame id="flash"> </turbo-frame>
+
   <div class="field">
     <%= form.label :name, 'Enter your name' %>
     <%= form.text_field :name, class: "u-full-width" %>

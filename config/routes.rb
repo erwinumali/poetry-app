@@ -34,6 +34,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :guides, only: :index
+
   resources :users, only: [:new, :create] do
     collection do
       delete :destroy

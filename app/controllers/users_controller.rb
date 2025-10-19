@@ -1,14 +1,17 @@
 class UsersController < ApplicationController
   before_action :user_created?, only: [:new, :create]
 
-  def new
-  end
+  def new; end
 
   def create
-    session[:user_id] = SecureRandom.uuid
-    session[:user_name] = params[:name]
+    if params[:name].present?
+      session[:user_id] = SecureRandom.uuid
+      session[:user_name] = params[:name]
 
-    redirect_to new_game_path
+      redirect_to new_game_path
+    else
+      render :error
+    end
   end
 
   def destroy
