@@ -1,11 +1,56 @@
 <h1> Game has ended! </h1>
 
 <% if game.mad_score == game.glad_score %>
-  <h2> It's a TIE! Both teams score a total of <%= game.mad_score %> points! </h2>
+  <h2> It's a TIE! Both teams score a total of <strong><%= game.mad_score %></strong> points! </h2>
 <% elsif game.mad_score > game.glad_score %>
-  <h2> Team Mad wins with <%= game.mad_score %> points! </h2>
+  <h2> <span class="team-mad-heading">Team Mad</span> wins with <%= game.mad_score %> points! </h2>
 <% else %>
-  <h2> Team Glad wins with <%= game.glad_score %> points! </h2>
+  <h2> <span class="team-glad-heading">Team Glad</span> wins with <%= game.glad_score %> points! </h2>
 <% end %>
+
+<h5 class="team-mad-heading">Team Mad <%= '(Winner)' if game.mad_score >= game.glad_score %></h5>
+<table class="player-list u-full-width scoring-table">
+  <thead>
+    <tr>
+      <td><strong>Name</strong></td>
+      <td><strong>Score</strong></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% game.players.select { |p| p[:team] == :mad }.each do |player| %>
+      <tr>
+        <td><%= player[:name] %></td>
+        <td><%= player[:score] %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td><strong>Total</strong></td>
+      <td><%= game.mad_score%></td>
+    </tr>
+  </tbody>
+</table>
+
+
+<h5 class="team-glad-heading">Team Glad <%= '(Winner)' if game.glad_score >= game.mad_score %></h5>
+<table class="player-list u-full-width scoring-table">
+  <thead>
+    <tr>
+      <td><strong>Name</strong></td>
+      <td><strong>Score</strong></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% game.players.select { |p| p[:team] == :glad }.each do |player| %>
+      <tr>
+        <td><%= player[:name] %></td>
+        <td><%= player[:score] %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td><strong>Total</strong></td>
+      <td><%= game.glad_score%></td>
+    </tr>
+  </tbody>
+</table>
 
 <%= link_to 'Return to Home', new_game_path, data: { turbo: false } %>

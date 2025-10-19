@@ -81,6 +81,10 @@ table.turn-score td.scored {
   background-color: #3cec65;
 }
 
+table.scoring-table td {
+  width: 50%;
+}
+
 a.logout {
   background-color: #ff8585;
   color: white;
