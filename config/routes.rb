@@ -34,7 +34,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :guides, only: :index
+  resources :guides, only: :index do
+    collection do
+      get :sample_turn
+    end
+  end
 
   resources :users, only: [:new, :create] do
     collection do

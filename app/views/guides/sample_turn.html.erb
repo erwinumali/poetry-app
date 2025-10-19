@@ -1,0 +1,37 @@
+<div data-controller="guide" data-guide-timer-value="120000">
+  <div class="timer" data-guide-target="timer">
+    <h1>120<h1>
+  </div>
+
+  <div class="words">
+    <div class="card-container">
+      <div class="card unscored" data-state="unscored" data-guide-target="word" data-action="click->guide#score">
+        <div class="difficulty"><%= "Easy (+1)" %></div>
+        <div class="word">Lion</div>
+      </div>
+    </div>
+
+    <div class="card-container">
+      <div class="card unscored" data-state="unscored" data-guide-target="word" data-action="click->guide#score">
+        <div class="difficulty"><%= "Hard (+3)" %></div>
+        <div class="word">Coco Martin</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="skip-container">
+    <div class="hidden" data-guide-target="pass">
+      <h5>You can pass without penalty:</h5>
+      <button class="pass-button" data-action="click->guide#skip">PASS</button>
+    </div>
+
+    <div data-guide-target="skip">
+      <h5>You can skip the words but lose a point:</h5>
+      <button class="skip-button" data-action="click->guide#skip">SKIP (-1)</button>
+    </div>
+  </div>
+
+  <div>
+    <%= link_to 'Return to Home', new_game_path, data: { turbo: false } %>
+  </div>
+</div>

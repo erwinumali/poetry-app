@@ -6,6 +6,9 @@
   <p>Players take turns as the “Poet,” drawing cards that contain a one-point and a three-point word or phrase (for example, “Cat” and “Catapult”). The Poet tries to describe or define the chosen word without breaking the one-syllable rule—for instance, to get teammates to guess “Cat,” the Poet might say, “Small fur pet that says meow.” If they slip and say something like “Kitten” or “Animal,” which have more than one syllable, they get bonked. Teams earn points for correctly guessed words within the time limit, and the team with the most points at the end wins.</p>
 
 
-  <%= link_to 'Sample Turn', '', class: 'button' %>
+  <div>
+    <%= link_to 'Sample Turn', sample_turn_guides_path, class: 'button' %>
+  </div>
+
   <%= link_to 'Return to Home', new_game_path, data: { turbo: false } %>
 </div>
