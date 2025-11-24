@@ -1,17 +1,37 @@
 <div
   data-controller="turn"
-  data-turn-player-id-value="<%= turn.player_id %>"
-  data-turn-judge-id-value="<%= turn.judge_id %>"
+  data-turn-player-type-value="<%= player_type %>"
 
   data-turn-timer-value="<%= turn.milliseconds_left %>"
 
   data-turn-score-url-value="<%= score_game_turn_path(game.code, turn) %>"
   data-turn-unscore-url-value="<%= unscore_game_turn_path(game.code, turn) %>"
   data-turn-skip-url-value="<%= skip_game_turn_path(game.code, turn) %>"
-
   data-turn-end-turn-url-value="<%= end_turn_game_path(game.code) %>"
 >
-  <div data-turn-target="currentView" class="hidden">
-    <%= render partial: 'turns/current', locals: { turn: turn } %>
+  <div data-turn-target="currentView">
+    <% if player_type == :current %>
+      <div data-turn-target="playerHeader">
+        <h1>It's your turn!</h1>
+        <h4>Try to get your team to say the following words:</h4>
+      </div>
+    <% elsif player_type == :judge %>
+      <div data-turn-target="judgeHeader">
+        <h1>You're the judge!</h1>
+        <h4>Make sure the player is not breaking the rules!</h4>
+      </div>
+    <% end %>
+
+    <%= turbo_stream_from "turn_#{turn.id}_#{player_type}" %>
+
+    <div data-turn-target="timer" class="timer">
+      <h1>999<h1>
+    </div>
+
+    <% if turn.current_sub_turn %>
+      <%= render partial: 'turns/sub_turn', locals: { sub_turn: turn.current_sub_turn, bonk: false, player_type: player_type } %>
+    <% else %>
+      <%= render partial: 'turns/empty_sub_turn' %>
+    <% end %>
   </div>
 </div>

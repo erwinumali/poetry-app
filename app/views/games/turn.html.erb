@@ -2,7 +2,8 @@
   <% turn = game.current_turn %>
 
   <% if turn.current_player[:id] == @user_id || turn.current_judge[:id] == @user_id %>
-    <%= render partial: 'games/turn', locals: { game: game, turn: turn } %>
+    <% player_type = turn.current_player[:id] == @user_id ? :current : :judge %>
+    <%= render partial: 'games/turn', locals: { game: game, turn: turn, player_type: player_type } %>
   <% else %>
     <%= render partial: 'games/other_turn', locals: { turn: turn, team: game.get_team(@user_id) } %>
   <% end%>

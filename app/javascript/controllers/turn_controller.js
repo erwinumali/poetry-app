@@ -4,16 +4,13 @@ export default class extends Controller {
   static targets = [
     "timer", "words", "word", "skip",
     "currentView",
-    "playerHeader", "judgeHeader",
     "bonk", "empty"
   ]
 
   static values = {
-    timer: Number,
+    playerType: String,
 
-    playerId: String,
-    judgeId: String,
-    currentId: String,
+    timer: Number,
 
     scoreUrl: String,
     unscoreUrl: String,
@@ -83,16 +80,13 @@ export default class extends Controller {
   // Callbacks
   //
   wordTargetConnected(target) {
-    if (this._isPlayer()) {
+    if (this._isCurrent()) {
       this._renderPass()
 
       // Autoskip
       // if (this._scoredCount() == 2) {
       //   setTimeout(() => this.skip({ params: { }, target: target }), 200)
       // }
-    }
-    else if (this._isJudge()) {
-      this._setWordsUnclickable()
     }
   }
 
@@ -101,7 +95,7 @@ export default class extends Controller {
   }
 
   bonkTargetConnected(target) {
-    if (this._isPlayer()) {
+    if (this._isCurrent()) {
       this.bonkTarget.classList.remove('invisible')
 
       setTimeout(() => {
@@ -127,12 +121,12 @@ export default class extends Controller {
     return document.querySelector('div[data-controller="game"]').dataset['gameCurrentIdValue']
   }
 
-  _isJudge() {
-    return this.judgeIdValue == this._currentId()
+  _isCurrent() {
+    return this.playerTypeValue == 'current';
   }
 
-  _isPlayer() {
-    return this.playerIdValue == this._currentId()
+  _isJudge() {
+    return this.playerTypeValue == 'judge';
   }
 
   _countdown() {
@@ -159,30 +153,16 @@ export default class extends Controller {
   }
 
   _renderView() {
-    if (this._isPlayer()) {
-      this.currentViewTarget.classList.remove('hidden')
-      this.playerHeaderTarget.classList.remove('hidden')
-    }
-    else if (this._isJudge()) {
-      this.currentViewTarget.classList.remove('hidden')
-      this.judgeHeaderTarget.classList.remove('hidden')
-
-      this._setWordsUnclickable()
-    }
-
     this._renderSkip()
   }
 
   _renderSkip() {
     if (this.hasEmptyTarget) { return }
 
-    if (this._isPlayer()) {
+    if (this._isCurrent()) {
       this.skipTarget.querySelector('[data-skip-type="skip"]').classList.remove('hidden')
 
       this._renderPass()
-    }
-    else if (this._isJudge()) {
-      this.skipTarget.querySelector('[data-skip-type="bonk"]').classList.remove('hidden')
     }
   }
 
@@ -215,10 +195,6 @@ export default class extends Controller {
     this.skipTarget.querySelectorAll('button').forEach((skip) => {
       skip.classList.remove('disabled')
     })
-  }
-
-  _setWordsUnclickable() {
-    this.wordTargets.forEach((word) => { word.classList.add('unclickable') })
   }
 
   _scoredCount() {

@@ -76,9 +76,11 @@ module Scoring
     end
 
     def broadcast_word(sub_turn, word, difficulty, scored)
-      broadcast_update_to self.game,
-        target: "#{difficulty}_sub_turn_#{sub_turn.id}",
-        partial: 'turns/word', locals: { word: word, difficulty: difficulty, scored: scored }
+      [:current, :judge].each do |player_type|
+        broadcast_update_to "turn_#{self.id}_#{player_type}",
+          target: "#{difficulty}_sub_turn_#{sub_turn.id}",
+          partial: 'turns/word', locals: { word: word, difficulty: difficulty, scored: scored, unclickable: player_type == :judge }
+      end
     end
   end
 end

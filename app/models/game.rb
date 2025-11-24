@@ -50,8 +50,8 @@ class Game < ApplicationRecord
     broadcast_update_to "game_#{self.id}_team_glad", target: "container_game_#{self.id}", partial: 'games/other_turn', locals: { turn: turn, team: :glad }
 
     # Broadcast to current player and judge
-    broadcast_update_to "game_#{self.id}_user_#{current_player[:id]}", target: "container_game_#{self.id}", partial: 'games/turn', locals: { game: self, turn: turn }
-    broadcast_update_to "game_#{self.id}_user_#{judge_player[:id]}", target: "container_game_#{self.id}", partial: 'games/turn', locals: { game: self, turn: turn }
+    broadcast_update_to "game_#{self.id}_user_#{current_player[:id]}", target: "container_game_#{self.id}", partial: 'games/turn', locals: { game: self, turn: turn, player_type: :current }
+    broadcast_update_to "game_#{self.id}_user_#{judge_player[:id]}", target: "container_game_#{self.id}", partial: 'games/turn', locals: { game: self, turn: turn, player_type: :judge }
   end
 
   def end_turn!

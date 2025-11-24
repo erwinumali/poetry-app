@@ -79,15 +79,19 @@ class Turn < ApplicationRecord
   private
 
   def broadcast_sub_turn(previous_sub_turn, bonk)
-    broadcast_replace_to self.game,
-      target: "sub_turn_#{previous_sub_turn.id}",
-      partial: 'turns/sub_turn', locals: { sub_turn: self.current_sub_turn, bonk: bonk }
+    [:current, :judge].each do |player_type|
+      broadcast_replace_to "turn_#{self.id}_#{player_type}",
+        target: "sub_turn_#{previous_sub_turn.id}",
+        partial: 'turns/sub_turn', locals: { sub_turn: self.current_sub_turn, bonk: bonk, player_type: player_type }
+    end
   end
 
   def broadcast_empty_sub_turn(previous_sub_turn)
-    broadcast_replace_to self.game,
-      target: "sub_turn_#{previous_sub_turn.id}",
-      partial: 'turns/empty_sub_turn'
+    [:current, :judge].each do |player_type|
+      broadcast_replace_to "turn_#{self.id}_#{player_type}",
+        target: "sub_turn_#{previous_sub_turn.id}",
+        partial: 'turns/empty_sub_turn'
+    end
   end
 
   def set_words
