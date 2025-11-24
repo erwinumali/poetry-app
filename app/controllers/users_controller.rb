@@ -8,7 +8,11 @@ class UsersController < ApplicationController
       session[:user_id] = SecureRandom.uuid
       session[:user_name] = params[:name]
 
-      redirect_to new_game_path
+      if params[:referrer]
+        redirect_to game_path(code: params[:referrer])
+      else
+        redirect_to new_game_path
+      end
     else
       render :error
     end

@@ -4,6 +4,10 @@
 <%= form_with local: true, url: users_path do |form| %>
   <turbo-frame id="flash"> </turbo-frame>
 
+  <% if params[:referrer] %>
+    <%= hidden_field_tag :referrer, params[:referrer] %>
+  <% end %>
+
   <div class="field">
     <%= form.label :name, 'Put your name' %>
     <%= form.text_field :name, class: "u-full-width" %>
