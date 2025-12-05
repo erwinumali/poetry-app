@@ -9,6 +9,6 @@
   <% end %>
 
   <%= form_with url: ready_game_path(code: @game.code), html: { class: ('hidden' unless @game.host == @user_id) } do |form| %>
-    <%= form.submit 'Go!', data: { action: 'game#ready' } %>
+    <%= form.submit 'Game Start!', data: { action: 'game#ready' } %>
   <% end %>
 <% end %>

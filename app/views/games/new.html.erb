@@ -13,7 +13,7 @@
         <%= f.label :rounds %>
         <%= f.number_field :rounds %>
 
-        <%= f.label :time_per_turn, 'Time per turn (seconds)' %>
+        <%= f.label :time_per_turn, 'Time per turn (sec)' %>
         <%= f.number_field :time_per_turn, value: (@game.time_per_turn / 1000) %>
 
         <div class="actions">
