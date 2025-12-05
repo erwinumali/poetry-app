@@ -1,19 +1,38 @@
 <h1>🧌 <%= @user_name %> </h1>
 <div data-controller="join">
   <div class="join-container">
-    <div data-join-target="create">
-      <%= form_with local: true, url: games_path, class: 'no-margin' do |form| %>
+    <div data-join-target="newBtn">
+      <a href="#" class="button" data-action="join#newGame:prevent">New Game</a>
+    </div>
+
+    <div data-join-target="createForm" class="hidden">
+      <h4>Game Rules</h4>
+      <%= form_for @game, local: true, url: games_path, class: 'no-margin' do |f| %>
+        <turbo-frame id="flash"> </turbo-frame>
+
+        <%= f.label :rounds %>
+        <%= f.number_field :rounds %>
+
+        <%= f.label :time_per_turn, 'Time per turn (seconds)' %>
+        <%= f.number_field :time_per_turn, value: (@game.time_per_turn / 1000) %>
+
         <div class="actions">
-          <%= form.submit 'New Game', class: 'button' %>
+          <%= f.submit 'Start Game', class: 'button' %>
+          <a href="#" class="button" data-join-target="cancel" data-action="join#cancel:prevent">Back</a>
         </div>
       <% end %>
     </div>
 
-    <input class="hidden" type="text" data-join-target="code" data-action="join#upcase keydown.enter->join#join:prevent" placeholder="Put Game Code">
-
     <div>
-      <a href="#" class="button" data-action="join#join:prevent">Join Game</a>
-      <a href="#" class="hidden button" data-join-target="cancel" data-action="join#cancel:prevent">Back</a>
+      <a href="#" class="button" data-join-target="putCode" data-action="join#join:prevent">Put Code</a>
+    </div>
+
+    <div data-join-target="joinForm" class="hidden join-form">
+      <div>
+        <input type="text" class="input-width" data-join-target="code" data-action="join#upcase keydown.enter->join#join:prevent" placeholder="Put Game Code">
+      </div>
+      <a href="#" class="button" data-action="join#joinGame:prevent">Join Game</a>
+      <a href="#" class="button" data-join-target="cancel" data-action="join#cancel:prevent">Back</a>
     </div>
 
     <div>

@@ -20,6 +20,10 @@ form.no-margin {
   margin: auto;
 }
 
+.mb-0 {
+  margin-bottom: 0;
+}
+
 .join-container {
   display: flex;
   flex-direction: column;
@@ -31,6 +35,10 @@ form.no-margin {
 
 .join-container .button {
   width: 20rem;
+}
+
+.input-width {
+  width: 40rem;
 }
 
 p.subtitle {
@@ -47,6 +55,32 @@ p.subtitle {
 
 .current-player {
   font-weight: bold;
+}
+
+.flash-error {
+  color: #ff8585;
+}
+
+a.logout {
+  background-color: #ff8585;
+  color: white;
+}
+
+noscript .alert {
+  background-color: pink;
+  text-align: center;
+}
+
+noscript p {
+  margin-top: -2rem;
+}
+
+.title-card {
+  width: 60%;
+}
+
+.player-list td {
+  text-align: center;
 }
 
 .team-mad-heading {
@@ -76,30 +110,3 @@ table.turn-score tr.negative{
 table.turn-score td.scored {
   background-color: #3cec65;
 }
-
-.flash-error {
-  color: #ff8585;
-}
-
-a.logout {
-  background-color: #ff8585;
-  color: white;
-}
-
-noscript .alert {
-  background-color: pink;
-  text-align: center;
-}
-
-noscript p {
-  margin-top: -2rem;
-}
-
-.title-card {
-  width: 60%;
-}
-
-.player-list td {
-  text-align: center;
-}
-

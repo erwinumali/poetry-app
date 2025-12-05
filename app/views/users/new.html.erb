@@ -1,5 +1,5 @@
 <%= image_tag 'title_card.jpg', class: 'title-card' %>
-<p class="subtitle">Ages 7+ | 4 - 12 players | 15 mins</p>
+<p class="subtitle">Ages 7+ | 4 - 16 players | 30 mins</p>
 
 <%= form_with local: true, url: users_path do |form| %>
   <turbo-frame id="flash"> </turbo-frame>
@@ -10,7 +10,7 @@
 
   <div class="field">
     <%= form.label :name, 'Put your name' %>
-    <%= form.text_field :name, class: "u-full-width" %>
+    <%= form.text_field :name, class: 'input-width' %>
   </div>
 
   <div class="actions">

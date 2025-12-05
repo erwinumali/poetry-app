@@ -1,4 +1,4 @@
-<h1>Game Lobby</h1>
+<h1>Game Wait</h1>
 
 <div>
   <div class="lobby-label">Share this code with your friends:</div>
@@ -14,7 +14,11 @@
   </div>
 </div>
 
-<h5><strong>Players in the lobby:</strong></h5>
+<p class="subtitle mb-0">
+  <%= pluralize(game.rounds, 'round') %> | <%= game.time_per_turn / 1000 %> s
+</p>
+
+<h5><strong>Cave:</strong></h5>
 <div>
   <% if !players || players.empty? %>
     <p>There are no players in this game yet.</p>

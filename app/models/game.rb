@@ -12,6 +12,9 @@ class Game < ApplicationRecord
   before_validation :generate_code, if: -> { self.code.nil? }
 
   validates :code, presence: true, uniqueness: true
+  validates :rounds, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 10 }
+  # Valid range: 5s - 10 minutes
+  validates :time_per_turn, numericality: { greater_than_or_equal_to: 5000, less_than_or_equal_to: 600000 }
 
   def prepare!
     self.shuffle_players!

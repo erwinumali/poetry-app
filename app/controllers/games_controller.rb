@@ -10,18 +10,22 @@ class GamesController < ApplicationController
   end
 
   def new
+    @game = Game.new
   end
 
   def create
     @game = Game.create(host: session[:user_id])
+    @game.assign_attributes(game_params)
+    # Adjust for seconds to milliseconds
+    @game.time_per_turn *= 1000
+
     @game.players = []
     @game.players << { id: session[:user_id], name: session[:user_name], score: 0, easy_count: 0, hard_count: 0 }
-    @game.save
 
-    if @game
+    if @game.save
       redirect_to game_path(code: @game.code)
     else
-      redirect_to new_game_path
+      render :error
     end
   end
 
@@ -85,6 +89,10 @@ class GamesController < ApplicationController
 
   private
 
+  def game_params
+    params.expect(game: [:rounds, :time_per_turn])
+  end
+
   def ensure_host
     redirect_to root_path unless @game.host == @user_id
   end
@@ -124,13 +132,18 @@ class GamesController < ApplicationController
   end
 
   def get_game
+    if params[:code].nil?
+      redirect_to(new_game_path)
+      return
+    end
+
     @game = Game.find_by_code(params[:code].upcase)
   end
 
   def invalid_player_count
     @game.players.count % 2 != 0 ||
       @game.players.count < 2 ||
-      @game.players.count > 12
+      @game.players.count > 16
   end
 
   # NOTE: This allows the possibility of multiple browsers on one user!
