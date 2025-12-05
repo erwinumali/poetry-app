@@ -1,7 +1,7 @@
 <%= render layout: 'layouts/container' do |game| %>
 
   <turbo-frame id="<%= dom_id(@game, :players) %>">
-    <%= render partial: 'games/players', locals: { game: @game, players: @game.players } %>
+    <%= render partial: 'lobby/players', locals: { game: @game, players: @game.players } %>
   </turbo-frame>
 
   <% unless @game.waiting? %>

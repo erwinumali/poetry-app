@@ -21,6 +21,7 @@ module Lobby
       save
 
       broadcast_updated_players
+      broadcast_update_to "game_#{self.id}_user_#{id}", target: "redirect_game_#{self.id}", partial: 'lobby/redirect'
     end
 
     private
@@ -42,7 +43,7 @@ module Lobby
     end
 
     def broadcast_updated_players
-      broadcast_update target: "players_game_#{self.id}", partial: 'games/players', locals: { game: self, players: self.players }
+      broadcast_update target: "players_game_#{self.id}", partial: 'lobby/players', locals: { game: self, players: self.players }
     end
   end
 end

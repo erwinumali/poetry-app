@@ -19,16 +19,18 @@
 </p>
 
 <h5><strong>Cave:</strong></h5>
-<div>
-  <% if !players || players.empty? %>
-    <p>There are no players in this game yet.</p>
-  <% else %>
-    <ol>
-      <% players.each do |player| %>
-        <li data-game-target="player" data-player-id="<%= player[:id] %>">
-          <%= "#{player[:name]}" %> <%= link_to 'X', remove_player_game_path(code: game.code, player_id: player[:id]), class: 'remove-link', data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
-        </li>
-      <% end %>
-    </ol>
-  <% end %>
-</div>
+<turbo-frame id="<%= dom_id(game, :redirect) %>">
+  <div>
+    <% if !players || players.empty? %>
+      <p>There are no players in this game yet.</p>
+    <% else %>
+      <ol>
+        <% players.each do |player| %>
+          <li data-game-target="player" data-player-id="<%= player[:id] %>">
+            <%= "#{player[:name]}" %> <%= link_to 'X', remove_player_game_path(code: game.code, player_id: player[:id]), class: 'remove-link', data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+          </li>
+        <% end %>
+      </ol>
+    <% end %>
+  </div>
+</turbo-frame>
