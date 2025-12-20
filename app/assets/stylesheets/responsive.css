@@ -3,11 +3,19 @@
   .main-content {
     min-width: 95%;
   }
+
+  .input-width {
+    width: 20rem;
+  }
 }
 
 /* Larger than mobile */
 @media (550px < width) {
   .main-content {
     min-width: 40%;
+  }
+
+  .input-width {
+    width: 40rem;
   }
 }
