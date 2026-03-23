@@ -17,7 +17,7 @@
         <%= f.number_field :time_per_turn, value: (@game.time_per_turn / 1000) %>
 
         <%= f.label :word_theme, 'Word Theme' %>
-        <%= f.select :word_theme, [['Default Words', 'default'], ['Filipino-themed', 'filipino']], prompt: 'Select a theme' %>
+        <%= f.select :word_theme, [['Default Words', 'default'], ['Klasikong Pilipino', 'filipino']], prompt: 'Select a theme' %>
 
         <div class="actions">
           <%= f.submit 'Start Game', class: 'button' %>
