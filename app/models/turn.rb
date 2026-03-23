@@ -44,9 +44,14 @@ class Turn < ApplicationRecord
 
   def create_sub_turn
     easy_word = self.words.easy.sample
-    self.words.delete(easy_word)
-
     hard_word = self.words.hard.sample
+
+    if easy_word.nil? || hard_word.nil?
+      return broadcast_empty_sub_turn(self.current_sub_turn) if self.current_sub_turn
+      return
+    end
+
+    self.words.delete(easy_word)
     self.words.delete(hard_word)
 
     self.sub_turns.create(easy_word: easy_word.word, hard_word: hard_word.word)
@@ -97,8 +102,18 @@ class Turn < ApplicationRecord
   def set_words
     previous_words = SubTurn.joins(:turn).where(turns: { game_id: self.game_id }).pluck(:easy_word, :hard_word).flatten
 
-    easy_words = Word.all.where.not(word: previous_words).easy.sample(20)
-    hard_words = Word.all.where.not(word: previous_words).hard.sample(20)
+    theme = self.game.word_theme.presence || 'default'
+    theme_words = Word.for_theme(theme)
+
+    easy_words = theme_words.where.not(word: previous_words).easy.to_a.shuffle.take(20)
+    hard_words = theme_words.where.not(word: previous_words).hard.to_a.shuffle.take(20)
+
+    # If theme is exhausted, fall back to default / global set for continuity.
+    if easy_words.empty? || hard_words.empty?
+      fallback_words = Word.where.not(word: previous_words)
+      easy_words = fallback_words.easy.to_a.shuffle.take(20) if easy_words.empty?
+      hard_words = fallback_words.hard.to_a.shuffle.take(20) if hard_words.empty?
+    end
 
     self.words = easy_words + hard_words
   end

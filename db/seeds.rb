@@ -12,14 +12,25 @@
 puts 'Seeding the database...'
 puts 'Creating words'
 
-easy_words = YAML.load_file(Rails.root.join('db', 'easy_words.yml'))
-easy_words['easy'].each do |word|
-  Word.find_or_create_by!(word: word.downcase, difficulty: :easy)
+# Update existing words to default theme if nil
+Word.where(theme: nil).update_all(theme: 'default')
+
+# Load default words
+default_words = YAML.load_file(Rails.root.join('db', 'words.yml'))
+default_words['easy'].each do |word|
+  Word.find_or_create_by!(word: word.downcase, difficulty: :easy, theme: 'default')
+end
+default_words['hard'].each do |word|
+  Word.find_or_create_by!(word: word.downcase, difficulty: :hard, theme: 'default')
 end
 
-hard_words = YAML.load_file(Rails.root.join('db', 'hard_words.yml'))
-hard_words['hard'].each do |word|
-  Word.find_or_create_by!(word: word.downcase, difficulty: :hard)
+# Load Filipino words
+filipino_words = YAML.load_file(Rails.root.join('db', 'filipino_words.yml'))
+filipino_words['easy'].each do |word|
+  Word.find_or_create_by!(word: word.downcase, difficulty: :easy, theme: 'filipino')
+end
+filipino_words['hard'].each do |word|
+  Word.find_or_create_by!(word: word.downcase, difficulty: :hard, theme: 'filipino')
 end
 
 puts 'Create test games'

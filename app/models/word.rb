@@ -5,4 +5,7 @@ class Word < ApplicationRecord
 
   scope :easy, -> { where(difficulty: :easy) }
   scope :hard, -> { where(difficulty: :hard) }
+  scope :for_theme, ->(theme) { where(theme: theme) }
+
+  validates :theme, presence: true
 end

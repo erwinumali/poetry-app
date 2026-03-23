@@ -16,6 +16,7 @@ class GamesController < ApplicationController
   def create
     @game = Game.create(host: session[:user_id])
     @game.assign_attributes(game_params)
+    @game.word_theme ||= 'default'
     # Adjust for seconds to milliseconds
     @game.time_per_turn *= 1000
 
@@ -90,7 +91,7 @@ class GamesController < ApplicationController
   private
 
   def game_params
-    params.expect(game: [:rounds, :time_per_turn])
+    params.expect(game: [:rounds, :time_per_turn, :word_theme])
   end
 
   def ensure_host
