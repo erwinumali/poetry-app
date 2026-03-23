@@ -35,5 +35,7 @@ end
 
 puts 'Create test games'
 ('A'..'Z').each do |letter|
-  Game.create!(code: letter * 4, players: [])
+  Game.find_or_create_by!(code: letter * 4) do |game|
+    game.players = []
+  end
 end
